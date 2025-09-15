@@ -32,7 +32,7 @@ const Payments = () => {
             position: "absolute",
             top: "15px",
             right: "15px",
-            background: "#555",
+            background: "#888",
             padding: "5px 12px",
             borderRadius: "20px",
             fontSize: "0.8rem",
@@ -45,7 +45,7 @@ const Payments = () => {
 
         {/* Title */}
         <h2
-          style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#888" }}
+          style={{ fontSize: "1.5rem", marginBottom: "0.5rem", color: "#000" }}
         >
           Paket Early Bird
         </h2>
@@ -56,11 +56,15 @@ const Payments = () => {
         </p>
 
         {/* Price */}
-        <h3 style={{ fontSize: "2rem", marginBottom: "1rem", color: "#000" }}>
+        <h3 style={{ fontSize: "3rem", marginBottom: "1rem", color: "#000" }}>
           Rp150.000
         </h3>
         <p
-          style={{ color: "#aaa", fontSize: "0.9rem", marginBottom: "1.5rem" }}
+          style={{
+            color: "#888",
+            fontSize: "0.9rem",
+            marginBottom: "1.5rem",
+          }}
         >
           Early Bird (200 peserta pertama) <br /> Harga normal{" "}
           <p style={{ textDecoration: "line-through", color: "red" }}>

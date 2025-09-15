@@ -1,6 +1,39 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Papa from "papaparse"; // npm install papaparse
 
-const PaymentDetail = ({ isEarlyBirdOpen = true }) => {
+const MAX_PESERTA = 3;
+
+const PaymentDetail = () => {
+  const [isEarlyBirdOpen, setIsEarlyBirdOpen] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const csvUrl =
+          "https://docs.google.com/spreadsheets/d/e/2PACX-1vQZMfCu2YjL-eZhoVtv3dDH7DhkdAVnu8B2mMwRjjKKJY1A50AAE6JfEOgiGJ397cjX1gJDYPaJRegB/pub?output=csv";
+
+        const response = await fetch(csvUrl);
+        const text = await response.text();
+
+        Papa.parse(text, {
+          header: true,
+          skipEmptyLines: true,
+          complete: (result) => {
+            const rows = result.data;
+            if (rows.length >= MAX_PESERTA) {
+              setIsEarlyBirdOpen(false);
+            }
+          },
+        });
+      } catch (error) {
+        console.error("Error fetching CSV:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  // kalau early bird ditutup
   if (!isEarlyBirdOpen) {
     return (
       <section
@@ -45,6 +78,7 @@ const PaymentDetail = ({ isEarlyBirdOpen = true }) => {
     );
   }
 
+  // kalau early bird masih buka (kode aslinya kamu tempel di sini)
   return (
     <section
       className="section"
