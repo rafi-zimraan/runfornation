@@ -7,7 +7,7 @@ const Data = () => {
     <div className="home__data">
       <h1 className="home__title" data-aos="fade-up" data-aos-duration="1000">
         <ReactTyped
-          strings={["I'm Rafi"]}
+          strings={["Hi Runners"]}
           typeSpeed={100}
           backSpeed={100}
           loop
@@ -68,21 +68,38 @@ const Data = () => {
         data-aos-duration="1000"
         data-aos-delay="50"
       >
-        Mobile App Developer & Designer
+        Spirit Of Culture 2025
       </h3>
       <p
-        className="home__description"
+        className="home__description leading-relaxed"
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="100"
       >
-        A mobile developer software engineer who aims to solve problems with
-        technology. Eager to learn new programming languages and software
-        architectures. My goal is to help organizations to have better software
-        quality and performance through writing clean code, well usage of design
-        patterns, and future-proof architecture..
+        Run For Nation: Spirit of Culture 2025 Fun Run 6,2K di Pontianak yang
+        memadukan olahraga, budaya, dan kebersamaan dengan semangat “Persatuan
+        dan Kebudayaan”. Terbuka untuk semua kalangan—dari pemula hingga
+        profesional—dengan rute seru, racepack eksklusif, medali finisher, dan
+        produk sponsor. Lebih dari sekadar lari, ini adalah perayaan
+        sportainment budaya yang menegaskan Pontianak & Kubu Raya sebagai
+        destinasi baru pelari lintas daerah dan regional.
       </p>
-      <a
+      {/* <p className="home__description mb-1  ">
+        Spirit of Culture adalah ajang Fun Run 6,2K yang menghadirkan perpaduan
+        olahraga, budaya, dan kebersamaan, diselenggarakan di Pontianak.
+      </p>
+
+      <p className="home__description mb-1">
+        Event ini terbuka untuk seluruh kalangan mulai dari pelari pemula,
+        komunitas, hingga atlet profesional dengan rute yang dirancang semenarik
+        mungkin demi menciptakan pengalaman yang tak terlupakan.
+      </p>
+
+      <p className="home__description">
+        Selain itu, peserta juga akan mendapatkan racepack eksklusif, medali
+        finisher, serta berbagai produk sponsor.
+      </p> */}
+      {/* <a
         href="#contact"
         className="button button--flex"
         data-aos="fade-up"
@@ -107,7 +124,7 @@ const Data = () => {
             fill="var(--container-color)"
           ></path>
         </svg>
-      </a>
+      </a> */}
     </div>
   );
 };

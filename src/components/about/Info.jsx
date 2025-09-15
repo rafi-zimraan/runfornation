@@ -5,29 +5,39 @@ const Info = () => {
   return (
     <div className="about__info grid">
       <div className="about__box" data-aos="fade-up" data-aos-duration="1000">
-        <i className="bx bx-award about__icon"></i>
-        <h3 className="about__title">Experience</h3>
-        <span className="about__subtitle">1.5 Year Working</span>
+        <i className="bx bx-check-shield about__icon"></i>
+        <h3 className="about__title">
+          Mendaftar berarti menyetujui seluruh regulasi.
+        </h3>
       </div>
+
       <div
         className="about__box"
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="100"
       >
-        <i className="bx bx-briefcase-alt about__icon"></i>
-        <h3 className="about__title">Completed</h3>
-        <span className="about__subtitle">3 Projects</span>
+        <i className="bx bx-user about__icon"></i>
+        <h3 className="about__title">Umur minimal peserta yaitu 10 tahun</h3>
+        <span className="about__subtitle">
+           (di bawah usia yang telah ditentukan, wajib didampingi orangtua).
+        </span>
       </div>
+
       <div
         className="about__box"
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="200"
       >
-        <i className="bx bx-support about__icon"></i>
-        <h3 className="about__title">Support</h3>
-        <span className="about__subtitle">Online 24/7</span>
+        <i className="bx bx-heart about__icon"></i>
+        <h3 className="about__title">
+          Peserta disarankan melakukan MCU (Medical Check Up)
+        </h3>
+        <span className="about__subtitle">
+          {" "}
+          memastikan kondisi fisik individu dalam keadaan sehat.
+        </span>
       </div>
     </div>
   );

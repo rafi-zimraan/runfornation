@@ -3,37 +3,57 @@ import "./App.css";
 import Header from "./components/header/Header";
 import Home from "./components/home/Home";
 import About from "./components/about/About";
-import Skills from "./components/skills/Skills";
-import Services from "./components/Services/Services";
-import Qualification from "./components/qualification/Qualification";
-import Work from "./components/work/Work";
+
 import Contact from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
 import ScrollUp from "./components/scrollUp/ScrollUp";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import Payments from "./components/payment/Payments";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
+import PaymentDetail from "./components/payment/PaymentDetail";
+import ScrollToHash from "./components/scrollToHash/ScrollToHash";
+import Size from "./components/size/Size";
 
 const App = () => {
   useEffect(() => {
     Aos.init();
   }, []);
-  return (
-    <>
-      <Header />
-      <main className="main">
-        <Home />
-        <About />
-        <Skills />
-        <Services />
-        <Qualification />
-        <Work />
-        <Contact />
-      </main>
 
-      <Footer />
-      <ScrollUp />
-    </>
-  );
+  const routes = createBrowserRouter([
+    {
+      path: "",
+      element: (
+        <>
+          <Header />
+          <ScrollToHash />
+          <Outlet />
+          <Footer />
+          <ScrollUp />
+        </>
+      ),
+      children: [
+        {
+          index: true,
+          element: (
+            <main className="main">
+              <Home />
+              <About />
+              <Size />
+              <Contact />
+              <Payments />
+            </main>
+          ),
+        },
+        {
+          path: "/payment",
+          element: <PaymentDetail />,
+        },
+      ],
+    },
+  ]);
+
+  return <RouterProvider router={routes} />;
 };
 
 export default App;

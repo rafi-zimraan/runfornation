@@ -5,7 +5,7 @@ const Social = () => {
   return (
     <div className="home__social">
       <a
-        href="https://www.instagram.com/rafizimraanarjuna.wijaya"
+        href="https://www.instagram.com/runfornation.id?utm_source=ig_web_button_share_sheet&igsh=MWp4YjQ2MTNoeWYzdQ=="
         className="home__social-icon"
         target="_blank"
         data-aos="fade-up"
@@ -13,7 +13,7 @@ const Social = () => {
       >
         <i className="uil uil-instagram"></i>
       </a>
-      <a
+      {/* <a
         href="https://github.com/rafi-zimraan"
         className="home__social-icon"
         target="_blank"
@@ -32,7 +32,7 @@ const Social = () => {
         data-aos-delay="200"
       >
         <i className="uil uil-twitter"></i>
-      </a>
+      </a> */}
     </div>
   );
 };

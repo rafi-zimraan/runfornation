@@ -1,10 +1,16 @@
 import React from "react";
 import "../../App.css";
-import AboutImg from "../../assets/Rafi 2.jpg";
+import AboutImg from "../../assets/Runners/logorunningnation.png";
 import Info from "./Info";
-import CV from "../../assets/PDF/Rafi ZImraan Arjuna Wijaya Resume.pdf";
+import { useState } from "react";
 
 const About = () => {
+  const [toggleState, setToggleState] = useState(0);
+
+  const toggleTab = (index) => {
+    setToggleState(index);
+  };
+
   return (
     <section className="about section" id="about">
       <h2
@@ -12,7 +18,7 @@ const About = () => {
         data-aos="fade-up"
         data-aos-duration="1000"
       >
-        About Me
+        Ketentuan Pendaftaran Run For Nation
       </h2>
       <span
         className="section__subtitle"
@@ -20,7 +26,7 @@ const About = () => {
         data-aos-duration="1000"
         data-aos-delay="100"
       >
-        My introduction
+        Spirit Of Culture 2025
       </span>
 
       <div className="about__container container grid">
@@ -33,26 +39,14 @@ const About = () => {
         />
         <div className="about__data">
           <Info />
-          <p
-            className="about__description"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="100"
-          >
-            I started my journey as a mobile app developer with a burning desire
-            to create stunning and functional apps that not only meet but also
-            exceed user expectations. Over the years, I have honed my skills and
-            built several projects, each offering a set of challenges and
-            opportunities to grow.
-          </p>
           <a
             target="_blank"
-            href={CV}
             className="button button--flex"
             data-aos="fade-up"
             data-aos-duration="1000"
+            onClick={() => toggleTab(1)}
           >
-            Download CV
+            Lhat Ketentuan
             <svg
               className="button__icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -79,6 +73,91 @@ const About = () => {
               ></path>
             </svg>
           </a>
+
+          <div
+            className={
+              toggleState === 1
+                ? "services__modal active-modal"
+                : "services__modal"
+            }
+          >
+            <div className="services__modal-content">
+              <i
+                onClick={() => toggleTab(0)}
+                className="uil uil-times services__modal-close "
+              ></i>
+              <h3 className="services__modal-title">
+                Ketentuan Pendaftaran Run For Nation <br /> Spirit Of Culture
+                2025
+              </h3>
+
+              <ul className="services__modal-services grid">
+                <li className="services__modal-service">
+                  <i className="uil uil-check-circle services__modal-icon"></i>
+                  <p className="services__modal-info">
+                    Mendaftar berarti menyetujui seluruh regulasi.
+                  </p>
+                </li>
+                <li className="services__modal-service">
+                  <i className="uil uil-check-circle services__modal-icon"></i>
+                  <p className="services__modal-info">
+                    Seluruh peserta akan dikirimkan email sebagai konfirmasi
+                    setelah mengirim jawaban pendaftaran (email yang dikirimkan
+                    konfirmasi pendaftaran adalah email yang mengisi link).
+                  </p>
+                </li>
+                <li className="services__modal-service">
+                  <i className="uil uil-check-circle services__modal-icon"></i>
+                  <p className="services__modal-info">
+                    Umur minimal peserta yaitu 10 tahun (di bawah usia yang
+                    telah ditentukan, wajib didampingi orangtua).
+                  </p>
+                </li>
+                <li className="services__modal-service">
+                  <i className="uil uil-check-circle services__modal-icon"></i>
+                  <p className="services__modal-info">
+                    Peserta wajib mengisi link dengan sesuai dan faktual (akan
+                    didiskualifikasi jika terjadi ketidaksesuaian data & tidak
+                    akan direfund).
+                  </p>
+                </li>
+                <li className="services__modal-service">
+                  <i className="uil uil-check-circle services__modal-icon"></i>
+                  <p className="services__modal-info">
+                    Peserta yang sudah terdaftar tidak dapat digantikan atau
+                    dipindahtangankan.
+                  </p>
+                </li>
+                <li className="services__modal-service">
+                  <i className="uil uil-check-circle services__modal-icon"></i>
+                  <p className="services__modal-info">
+                    Peserta tidak diperkenankan mengganti data setelah mengirim
+                    jawaban pendaftaran.
+                  </p>
+                </li>
+                <li className="services__modal-service">
+                  <i className="uil uil-check-circle services__modal-icon"></i>
+                  <p className="services__modal-info">
+                    Peserta tidak diperkenankan refund.
+                  </p>
+                </li>
+                <li className="services__modal-service">
+                  <i className="uil uil-check-circle services__modal-icon"></i>
+                  <p className="services__modal-info">
+                    Peserta disarankan melakukan MCU (Medical Check Up) untuk
+                    memastikan kondisi fisik individu dalam keadaan sehat.
+                  </p>
+                </li>
+                <li className="services__modal-service">
+                  <i className="uil uil-check-circle services__modal-icon"></i>
+                  <p className="services__modal-info">
+                    Penyelenggara tidak bertanggungjawab atas bahaya (penyakit,
+                    kecelakaan, kelumpuhan, kematian, Force Majeure) apapun.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </section>

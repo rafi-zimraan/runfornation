@@ -1,9 +1,64 @@
-# PORTOFOLIO
+# RUNFORNATION
 
-![Portofolui Image](https://github.com/rafi-zimraan/portofolio/blob/main/src/assets/Icon/BackgroundAps.png)
+🏃‍♂️ RUN FOR NATION : Spirit Of Culture 2025
 
-Welcome to my GitHub portfolio, showcasing my work as a Mobile Developer with over two years of experience in software engineering. I specialize in developing applications using React Native and Flutter.
+![Run For Nation Banner](./src/assets/Runners/BGRUNFORNATION.jpg)
 
-In this repository, you will find a variety of projects that reflect my passion for clean code, user-friendly design, and innovative problem-solving. Each project demonstrates my commitment to software quality and best practices, including modern software architectures and design patterns.
+Run For Nation : Spirit of Culture adalah ajang Fun Run 6,2K yang menghadirkan perpaduan olahraga, budaya, dan kebersamaan, diselenggarakan di Pontianak.
+Mengusung semangat “Persatuan dan Kebudayaan”, event ini bukan hanya sekadar olahraga, tetapi juga sebuah perayaan sportainment yang menampilkan kekayaan budaya daerah serta semangat persatuan bangsa.
 
-Feel free to explore my projects, and don't hesitate to reach out if you have any questions or collaboration ideas. Thank you for visiting, and I look forward to connecting with you!
+🎯 Tentang Event
+
+Kategori: Fun Run 6,2K
+
+Lokasi: Pontianak & Kubu Raya
+
+Tema: Persatuan dan Kebudayaan
+
+Peserta: Terbuka untuk semua kalangan – pemula, komunitas, hingga atlet profesional
+
+Peserta akan mendapatkan:
+✅ Racepack eksklusif
+✅ Medali finisher
+✅ Produk sponsor menarik
+✅ Pengalaman berlari sambil merayakan budaya
+
+🌐 Tentang Website
+
+Website ini dibuat untuk mendukung event Run For Nation: Spirit of Culture 2025, dengan fitur:
+
+📌 Informasi event
+
+📝 Pendaftaran peserta online
+
+💳 Pembayaran & konfirmasi
+
+📷 Galeri & dokumentasi
+
+📢 Update berita & sponsor
+
+⚙️ Teknologi yang Digunakan
+
+Frontend: React + Vite
+
+Styling: CSS / Tailwind
+
+State Management: React Hooks / Redux (jika dipakai)
+
+🚀 Cara Menjalankan Project
+
+# clone repo
+
+git clone https://github.com/rafi-zimraan/portofolio.git run-for-nation
+
+# masuk folder
+
+cd run-for-nation
+
+# install dependencies
+
+npm install
+
+# jalankan server
+
+npm run dev

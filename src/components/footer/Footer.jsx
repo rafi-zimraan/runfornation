@@ -10,7 +10,7 @@ const Footer = () => {
           data-aos="fade-up"
           data-aos-duration="1000"
         >
-          Rafi
+          Spirit Of Culture 2025
         </h1>
 
         <ul
@@ -20,52 +20,39 @@ const Footer = () => {
           data-aos-delay="100"
         >
           <li>
+            <a href="#home" className="footer__link">
+              Home
+            </a>
+          </li>
+
+          <li>
             <a href="#about" className="footer__link">
               About
             </a>
           </li>
 
           <li>
-            <a href="#portofolio" className="footer__link">
-              Projects
+            <a href="#size" className="footer__link">
+              Size
+            </a>
+          </li>
+
+          <li>
+            <a href="#payment" className="footer__link">
+              Payment
+            </a>
+          </li>
+
+          <li>
+            <a href="#contact" className="footer__link">
+              Contact
             </a>
           </li>
         </ul>
 
-        <div className="footer__social">
-          <a
-            href="https://www.facebook.com/raffi.zimraan"
-            className="footer__social-link"
-            target="_blank"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            <i className="bx bxl-facebook"></i>
-          </a>
-          <a
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="100"
-            href="https://www.linkedin.com/in/rafizimraanarjunawijaya/"
-            className="footer__social-link"
-            target="_blank"
-          >
-            <i className="bx bxl-linkedin"></i>
-          </a>
-          <a
-            data-aos="fade-up"
-            data-aos-duration="1000"
-            data-aos-delay="200"
-            href="https://t.me/Rafizimraan"
-            className="footer__social-link"
-            target="_blank"
-          >
-            <i className="bx bxl-telegram "></i>
-          </a>
-        </div>
         <span
           className="footer__copy"
-          data-aos="fade-up"
+          // data-aos="fade-up"
           data-aos-duration="1000"
         >
           &#169; Crypticalcoder. All rights reserved
