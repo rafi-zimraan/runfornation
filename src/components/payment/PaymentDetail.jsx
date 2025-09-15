@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Papa from "papaparse"; // npm install papaparse
 
-const MAX_PESERTA = 3;
+const MAX_PESERTA = 200;
 
 const PaymentDetail = () => {
   const [isEarlyBirdOpen, setIsEarlyBirdOpen] = useState(true);
@@ -158,7 +158,7 @@ const PaymentDetail = () => {
           data-aos-delay="400"
         >
           <a
-            href="https://wa.me/628115751432?text=Halo%20kak%20Meli,%20saya%20sudah%20transfer%20untuk%20pendaftaran%20Run%20For%20Nation.%20Saya%20lampirkan%20bukti%20pembayaran."
+            href="https://wa.me/6285393669366?text=Halo%20kak%20Meli,%20saya%20sudah%20transfer%20untuk%20pendaftaran%20Run%20For%20Nation.%20Saya%20lampirkan%20bukti%20pembayaran."
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -170,7 +170,7 @@ const PaymentDetail = () => {
               fontWeight: "bold",
             }}
           >
-            WhatsApp Meli (+62 811-5751-432)
+            WhatsApp Meli (+62 853-9366-9366)
           </a>
 
           <a
