@@ -83,15 +83,26 @@ const Contact = () => {
   }
 
   return (
-    <iframe
-      src="https://docs.google.com/forms/d/e/1FAIpQLSd1ICZDT-5DRKYRbhRgKmvMOR_xkggljcS5YbaohqieK5Todw/viewform?embedded=true"
-      style={{ width: "100%", height: "100vh" }}
-      frameborder="0"
-      marginheight="0"
-      marginwidth="0"
+    <section
+      className="section"
+      style={{
+        padding: "4rem 0",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+      id="contact"
     >
-      Memuat…
-    </iframe>
+      <iframe
+        src="https://docs.google.com/forms/d/e/1FAIpQLSd1ICZDT-5DRKYRbhRgKmvMOR_xkggljcS5YbaohqieK5Todw/viewform?embedded=true"
+        style={{ width: "100%", height: "100vh" }}
+        frameborder="0"
+        marginheight="0"
+        marginwidth="0"
+      >
+        Memuat…
+      </iframe>
+    </section>
   );
 };
 
