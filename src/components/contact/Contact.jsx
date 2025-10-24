@@ -5,7 +5,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import Papa from "papaparse";
 
-const MAX_PESERTA = 200;
+const MAX_PESERTA = 1500;
 
 const Contact = () => {
   const [isEarlyBirdOpen, setIsEarlyBirdOpen] = useState(true);

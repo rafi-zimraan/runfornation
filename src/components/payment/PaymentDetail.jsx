@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Papa from "papaparse"; // npm install papaparse
 
-const MAX_PESERTA = 200;
+const MAX_PESERTA = 1500;
 
 const PaymentDetail = () => {
   const [isEarlyBirdOpen, setIsEarlyBirdOpen] = useState(true);
