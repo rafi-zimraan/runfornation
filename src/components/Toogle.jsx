@@ -16,10 +16,15 @@ const Toogle = () => {
     <>
       <label id="theme-toggle-button">
         <input type="checkbox" id="toggle" onChange={toogleTheme} />
-        <svg
+        {/* <svg
           viewBox="0 0 69.667 44"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns="http://www.w3.org/2000/svg"
+        > */}
+        <svg
+          viewBox="0 0 69.667 44"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlnsXlink="http://www.w3.org/1999/xlink"
         >
           <g
             transform="translate(3.5 3.5)"
