@@ -93,7 +93,7 @@ const Contact = () => {
       }}
       id="contact"
     >
-      <iframe
+      {/* <iframe
         src="https://docs.google.com/forms/d/e/1FAIpQLSd1ICZDT-5DRKYRbhRgKmvMOR_xkggljcS5YbaohqieK5Todw/viewform?embedded=true"
         style={{ width: "100%", height: "100vh" }}
         frameborder="0"
@@ -101,7 +101,7 @@ const Contact = () => {
         marginwidth="0"
       >
         Memuat…
-      </iframe>
+      </iframe> */}
     </section>
   );
 };
