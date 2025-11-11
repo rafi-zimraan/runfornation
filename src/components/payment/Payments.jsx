@@ -233,6 +233,11 @@ const Payments = () => {
       }}
     >
       🚫 Pendaftaran Telah Ditutup — Terima kasih atas antusiasmenya!
+      <br />
+      🎉{" "}
+      <span style={{ fontWeight: "600" }}>
+        Sampai jumpa di event berikutnya!
+      </span>
     </div>
   );
 
