@@ -1,101 +1,73 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../App.css";
 import Toogle from "../Toogle";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  window.addEventListener("scroll", function () {
-    const header = document.querySelector(".header");
-    if (this.scrollY >= 80) header.classList.add("scroll-header");
-    else header.classList.remove("scroll-header");
-  });
-
-  // menu toggle
-  const [Toggle, showMenu] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const [activeNav, setActiveNav] = useState("#home");
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY >= 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const navItems = [
+    { href: "/#home",    label: "Home",         icon: "uil-estate",   id: "#home" },
+    { href: "/#about",   label: "Ketentuan",    icon: "uil-clipboard-notes", id: "#about" },
+    { href: "/#size",    label: "Size",          icon: "uil-ruler",    id: "#size" },
+    { href: "/#contact", label: "Daftar",        icon: "uil-file-alt", id: "#contact" },
+    { href: "/#payment", label: "Pembayaran",    icon: "uil-wallet",   id: "#payment" },
+  ];
 
   return (
-    <header className="header">
+    <header className={`header${scrolled ? " scroll-header" : ""}`}>
       <nav className="nav container">
+
+        {/* Logo */}
         <Link to="/" className="nav__logo">
-          RUN FOR NATION
+          <div>
+            <div className="nav__logo-text">RUN FOR NATION</div>
+            <div className="nav__logo-sub">Spirit of Culture 2026</div>
+          </div>
         </Link>
 
-        <div className={Toggle ? "nav__menu show-menu" : "nav__menu"}>
+        {/* Nav links */}
+        <div className={`nav__menu${menuOpen ? " show-menu" : ""}`}>
           <ul className="nav__list">
-            <li className="nav__item">
-              <Link
-                to="/#home"
-                onClick={() => setActiveNav("#home")}
-                className={
-                  activeNav === "#home" ? "nav__link active-link" : "nav__link"
-                }
-              >
-                <i className="uil uil-estate nav__icon"></i> Home
-              </Link>
-            </li>
-
-            <li className="nav__item">
-              <Link
-                to="/#about"
-                onClick={() => setActiveNav("#about")}
-                className={
-                  activeNav === "#about" ? "nav__link active-link" : "nav__link"
-                }
-              >
-                <i className="uil uil-user nav__icon"></i> About
-              </Link>
-            </li>
-
-            <li className="nav__item">
-              <Link
-                to="/#size"
-                onClick={() => setActiveNav("#size")}
-                className={
-                  activeNav === "#size" ? "nav__link active-link" : "nav__link"
-                }
-              >
-                <i className="uil uil-user nav__icon"></i> Size
-              </Link>
-            </li>
-
-            <li className="nav__item">
-              <Link
-                to="/#contact"
-                onClick={() => setActiveNav("#contact")}
-                className={
-                  activeNav === "#contact"
-                    ? "nav__link active-link"
-                    : "nav__link"
-                }
-              >
-                <i className="uil uil-message nav__icon"></i> Registration
-              </Link>
-            </li>
-
-            <li className="nav__item">
-              <Link
-                to="/#payment"
-                onClick={() => setActiveNav("#payment")}
-                className={
-                  activeNav === "#payment"
-                    ? "nav__link active-link"
-                    : "nav__link"
-                }
-              >
-                <i className="uil uil-message nav__icon"></i> Payment
-              </Link>
-            </li>
+            {navItems.map((item) => (
+              <li key={item.id}>
+                <Link
+                  to={item.href}
+                  className={`nav__link${activeNav === item.id ? " active-link" : ""}`}
+                  onClick={() => { setActiveNav(item.id); setMenuOpen(false); }}
+                >
+                  <i className={`uil ${item.icon} nav__icon`}></i>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
           </ul>
           <i
             className="uil uil-times nav__close"
-            onClick={() => showMenu(!Toggle)}
-          ></i>
+            onClick={() => setMenuOpen(false)}
+          />
         </div>
-        <Toogle />
-        <div className="nav__toggle" onClick={() => showMenu(!Toggle)}>
-          <i className="uil uil-apps"></i>
+
+        {/* Right controls */}
+        <div className="nav__right">
+          <Toogle />
+          <div
+            className="nav__toggle"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <i className="uil uil-apps"></i>
+          </div>
         </div>
+
       </nav>
     </header>
   );

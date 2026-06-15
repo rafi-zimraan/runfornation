@@ -1,16 +1,20 @@
-import React from 'react';
-import '../../App.css'
+import React, { useEffect } from "react";
+import "../../App.css";
 
 const ScrollUp = () => {
- 
-    window.addEventListener("scroll", function () {
-        const scrollUp = document.querySelector(".scrollup")
-        if (this.scrollY <= 560) scrollUp.classList.add("show-scroll")
-        else scrollUp.classList.remove("show-scroll")
-    })
+  useEffect(() => {
+    const onScroll = () => {
+      const el = document.querySelector(".scrollup");
+      if (!el) return;
+      if (window.scrollY > 400) el.classList.add("show-scroll");
+      else el.classList.remove("show-scroll");
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <a href="#home" className="scrollup">
+    <a href="#home" className="scrollup" aria-label="Scroll to top">
       <i className="uil uil-arrow-up scrollup__icon"></i>
     </a>
   );

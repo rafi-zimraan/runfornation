@@ -1,397 +1,336 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
-
-// const Payments = () => {
-//   const cardStyle = {
-//     background: "linear-gradient(145deg, #ffffff, #f2f2f2)",
-//     color: "#fff",
-//     borderRadius: "16px",
-//     padding: "2rem",
-//     maxWidth: "400px",
-//     width: "100%",
-//     boxShadow: "0px 8px 20px rgba(0,0,0,0.4)",
-//     textAlign: "center",
-//     position: "relative",
-//   };
-
-//   const buttonStyle = {
-//     background: "linear-gradient(90deg, #014a91, #014a91)",
-//     border: "none",
-//     padding: "12px 20px",
-//     borderRadius: "10px",
-//     color: "#fff",
-//     fontWeight: "bold",
-//     cursor: "pointer",
-//     width: "100%",
-//     marginBottom: "1.5rem",
-//     fontSize: "1rem",
-//   };
-
-//   const facilitiesStyle = {
-//     listStyle: "none",
-//     padding: 0,
-//     margin: 0,
-//     textAlign: "left",
-//     lineHeight: "1.8rem",
-//     color: "#888",
-//   };
-
-//   return (
-//     <section
-//       className="section"
-//       style={{
-//         padding: "4rem 0",
-//         display: "flex",
-//         justifyContent: "center",
-//         alignItems: "center",
-//       }}
-//       id="payment"
-//     >
-//       <div
-//         style={{
-//           display: "flex",
-//           gap: "2rem",
-//           flexWrap: "wrap",
-//           justifyContent: "center",
-//         }}
-//       >
-//         {/* Paket Normal */}
-//         <div style={cardStyle}>
-//           <div
-//             style={{
-//               position: "absolute",
-//               top: "15px",
-//               right: "15px",
-//               background: "#888",
-//               padding: "5px 12px",
-//               borderRadius: "20px",
-//               fontSize: "0.8rem",
-//               fontWeight: "bold",
-//               color: "#fff",
-//             }}
-//           >
-//             Most popular
-//           </div>
-
-//           <h2
-//             style={{
-//               fontSize: "1.5rem",
-//               marginBottom: "0.5rem",
-//               color: "#000",
-//             }}
-//           >
-//             Paket Umum
-//           </h2>
-//           <p
-//             style={{
-//               color: "#aaa",
-//               fontSize: "0.9rem",
-//               marginBottom: "1.5rem",
-//             }}
-//           >
-//             Nikmati pengalaman berlari penuh keseruan dengan seluruh fasilitas
-//             lengkap untuk peserta individu!
-//           </p>
-
-//           <h3 style={{ fontSize: "3rem", marginBottom: "1rem", color: "#000" }}>
-//             Rp175.000
-//           </h3>
-
-//           <Link to={"/payment"}>
-//             <button style={buttonStyle}>Pilih Paket Ini</button>
-//           </Link>
-
-//           <ul style={facilitiesStyle}>
-//             <li>✅ Race Jersey</li>
-//             <li>✅ BIB Number</li>
-//             <li>✅ Medali Finisher</li>
-//             <li>✅ Totebag</li>
-//             <li>✅ Refreshment</li>
-//             <li>✅ Support Medis</li>
-//             <li>✅ Dokumen Race</li>
-//             <li>✅ Undian Doorprize</li>
-//           </ul>
-//         </div>
-
-//         {/* Paket Early Bird */}
-//         <div style={cardStyle}>
-//           <div
-//             style={{
-//               position: "absolute",
-//               top: "15px",
-//               right: "15px",
-//               background: "#ff9800",
-//               padding: "5px 12px",
-//               borderRadius: "20px",
-//               fontSize: "0.8rem",
-//               fontWeight: "bold",
-//               color: "#fff",
-//             }}
-//           >
-//             Limited Offer
-//           </div>
-
-//           <h2
-//             style={{
-//               fontSize: "1.5rem",
-//               marginBottom: "0.5rem",
-//               color: "#000",
-//             }}
-//           >
-//             Early Bird
-//           </h2>
-//           <p
-//             style={{
-//               color: "#aaa",
-//               fontSize: "0.9rem",
-//               marginBottom: "1.5rem",
-//             }}
-//           >
-//             Dapatkan harga spesial untuk pendaftaran kolektif komunitas atau
-//             tim. Semakin rame, semakin seru!
-//           </p>
-
-//           <h3 style={{ fontSize: "3rem", marginBottom: "1rem", color: "#000" }}>
-//             Rp150.000
-//           </h3>
-
-//           <Link to={"/payment"}>
-//             <button style={buttonStyle}>Pilih Paket Ini</button>
-//           </Link>
-
-//           <ul style={facilitiesStyle}>
-//             <li>✅ Race Jersey</li>
-//             <li>✅ BIB Number</li>
-//             <li>✅ Medali Finisher</li>
-//             <li>✅ Totebag</li>
-//             <li>✅ Refreshment</li>
-//             <li>✅ Support Medis</li>
-//             <li>✅ Dokumen Race</li>
-//             <li>✅ Undian Doorprize</li>
-//           </ul>
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Payments;
-
-// ! Early Bird Closed Component
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import "../../App.css";
 
-const Payments = () => {
-  const isRegistrationClosed = true; // 🔒 ubah ini ke false jika nanti dibuka lagi
+const isRegistrationClosed = false; // ubah ke true untuk menutup pendaftaran
 
-  const cardStyle = {
-    background: "linear-gradient(145deg, #ffffff, #f2f2f2)",
-    borderRadius: "16px",
-    padding: "2rem",
-    maxWidth: "400px",
-    width: "100%",
-    boxShadow: "0px 8px 20px rgba(0,0,0,0.4)",
-    textAlign: "center",
-    position: "relative",
-  };
+const INCLUDES = [
+  "Jersey Event",
+  "Medali Finisher",
+  "BIB Number",
+  "Produk Sponsor",
+  "Kupon Undian",
+  "Tote Bag",
+  "Water Station",
+  "Refreshment",
+  "Foto / Dokumentasi",
+  "Support Medis",
+];
 
-  const buttonStyle = {
-    background: isRegistrationClosed
-      ? "#ccc"
-      : "linear-gradient(90deg, #014a91, #014a91)",
-    border: "none",
-    padding: "12px 20px",
-    borderRadius: "10px",
-    color: "#fff",
-    fontWeight: "bold",
-    cursor: isRegistrationClosed ? "not-allowed" : "pointer",
-    width: "100%",
-    marginBottom: "1.5rem",
-    fontSize: "1rem",
-    opacity: isRegistrationClosed ? 0.7 : 1,
-  };
+const PACKAGES = [
+  {
+    category: "5K",
+    earlyBird: 165000,
+    normal:    180000,
+    badge:     "Most Popular",
+    badgeColor: "#1B3CC0",
+    desc: "Cocok untuk pemula, komunitas, dan keluarga. Jarak 5 kilometer penuh semangat!",
+    color: "#1B3CC0",
+  },
+  {
+    category: "10K",
+    earlyBird: 195000,
+    normal:    225000,
+    badge:     "Challenge",
+    badgeColor: "#D42020",
+    desc: "Untuk pelari yang ingin tantangan lebih. Buktikan dirimu di jalur 10 kilometer!",
+    color: "#D42020",
+  },
+];
 
-  const facilitiesStyle = {
-    listStyle: "none",
-    padding: 0,
-    margin: 0,
-    textAlign: "left",
-    lineHeight: "1.8rem",
-    color: "#888",
-  };
+const fmt = (n) => new Intl.NumberFormat("id-ID").format(n);
 
-  const closedBanner = (
-    <div
-      style={{
-        background: "#ff4d4d",
-        color: "#fff",
-        padding: "1rem",
-        borderRadius: "10px",
-        textAlign: "center",
-        marginBottom: "2rem",
-        fontWeight: "bold",
-      }}
-    >
-      🚫 Pendaftaran Telah Ditutup — Terima kasih atas antusiasmenya!
-      <br />
-      🎉{" "}
-      <span style={{ fontWeight: "600" }}>
-        Sampai jumpa di event berikutnya!
-      </span>
-    </div>
-  );
+/* ── per-card component ── */
+const PackageCard = ({ pkg, index }) => {
+  const [longSleeve, setLongSleeve] = useState(false);
+
+  const addon      = longSleeve ? 10000 : 0;
+  const earlyFinal = pkg.earlyBird + addon;
+  const normalFinal= pkg.normal    + addon;
 
   return (
-    <section
-      className="section"
+    <div
+      data-aos="fade-up"
+      data-aos-duration="700"
+      data-aos-delay={index * 100}
       style={{
-        padding: "4rem 0",
+        background: "var(--surface)",
+        border: "1.5px solid var(--border)",
+        borderRadius: "var(--r-xl)",
+        padding: "2rem",
+        position: "relative",
+        overflow: "hidden",
+        transition: "transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease)",
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        gap: "1.25rem",
       }}
-      id="payment"
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateY(-6px)";
+        e.currentTarget.style.boxShadow = "var(--shadow-md)";
+        e.currentTarget.style.borderColor = pkg.color + "50";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "";
+        e.currentTarget.style.boxShadow = "";
+        e.currentTarget.style.borderColor = "";
+      }}
     >
-      {isRegistrationClosed && closedBanner}
+      {/* top accent stripe */}
+      <div style={{
+        position: "absolute", top: 0, left: 0, right: 0, height: "4px",
+        background: `linear-gradient(90deg, ${pkg.color}, ${pkg.color}88)`,
+      }} />
 
-      <div
-        style={{
-          display: "flex",
-          gap: "2rem",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        {/* Paket Normal */}
-        <div style={cardStyle}>
-          <div
-            style={{
-              position: "absolute",
-              top: "15px",
-              right: "15px",
-              background: "#888",
-              padding: "5px 12px",
-              borderRadius: "20px",
-              fontSize: "0.8rem",
-              fontWeight: "bold",
-              color: "#fff",
-            }}
-          >
-            Most popular
+      {/* badge */}
+      <span style={{
+        position: "absolute", top: "1.25rem", right: "1.25rem",
+        background: pkg.badgeColor, color: "#fff",
+        fontSize: "var(--fs-xs)", fontWeight: 700,
+        padding: "0.25rem 0.75rem", borderRadius: "var(--r-full)",
+      }}>
+        {pkg.badge}
+      </span>
+
+      {/* category icon */}
+      <div style={{
+        display: "inline-flex", alignItems: "center", justifyContent: "center",
+        width: "3.5rem", height: "3.5rem",
+        borderRadius: "var(--r-md)",
+        background: pkg.color + "12",
+        color: pkg.color,
+        fontSize: "1.375rem", fontWeight: 900,
+      }}>
+        {pkg.category}
+      </div>
+
+      {/* title + desc */}
+      <div>
+        <h3 style={{ fontSize: "var(--fs-xl)", fontWeight: 700, color: "var(--text)", marginBottom: "0.4rem" }}>
+          Fun Run {pkg.category}
+        </h3>
+        <p style={{ fontSize: "var(--fs-sm)", color: "var(--text-muted)", lineHeight: 1.6 }}>
+          {pkg.desc}
+        </p>
+      </div>
+
+      {/* ── Long Sleeve Toggle ── */}
+      <div style={{
+        background: longSleeve ? `${pkg.color}08` : "var(--surface-2)",
+        border: `1.5px solid ${longSleeve ? pkg.color + "30" : "var(--border)"}`,
+        borderRadius: "var(--r-md)",
+        padding: "0.875rem 1rem",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "0.75rem",
+        transition: "all var(--t-fast) var(--ease)",
+      }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
+          <i className="uil uil-tshirt" style={{ fontSize: "1.25rem", color: longSleeve ? pkg.color : "var(--text-muted)" }}></i>
+          <div>
+            <div style={{ fontSize: "var(--fs-sm)", fontWeight: 600, color: "var(--text)" }}>
+              Tangan Panjang
+            </div>
+            <div style={{ fontSize: "var(--fs-xs)", color: "var(--text-muted)" }}>
+              +Rp10.000
+            </div>
           </div>
-
-          <h2
-            style={{
-              fontSize: "1.5rem",
-              marginBottom: "0.5rem",
-              color: "#000",
-            }}
-          >
-            Paket Umum
-          </h2>
-          <p
-            style={{
-              color: "#aaa",
-              fontSize: "0.9rem",
-              marginBottom: "1.5rem",
-            }}
-          >
-            Nikmati pengalaman berlari penuh keseruan dengan seluruh fasilitas
-            lengkap untuk peserta individu!
-          </p>
-
-          <h3 style={{ fontSize: "3rem", marginBottom: "1rem", color: "#000" }}>
-            Rp175.000
-          </h3>
-
-          {isRegistrationClosed ? (
-            <button style={buttonStyle} disabled>
-              Pendaftaran Ditutup
-            </button>
-          ) : (
-            <Link to={"/payment"}>
-              <button style={buttonStyle}>Pilih Paket Ini</button>
-            </Link>
-          )}
-
-          <ul style={facilitiesStyle}>
-            <li>✅ Race Jersey</li>
-            <li>✅ BIB Number</li>
-            <li>✅ Medali Finisher</li>
-            <li>✅ Totebag</li>
-            <li>✅ Refreshment</li>
-            <li>✅ Support Medis</li>
-            <li>✅ Dokumen Race</li>
-            <li>✅ Undian Doorprize</li>
-          </ul>
         </div>
 
-        {/* Paket Early Bird */}
-        <div style={cardStyle}>
-          <div
-            style={{
-              position: "absolute",
-              top: "15px",
-              right: "15px",
-              background: "#ff9800",
-              padding: "5px 12px",
-              borderRadius: "20px",
-              fontSize: "0.8rem",
-              fontWeight: "bold",
-              color: "#fff",
-            }}
-          >
-            Limited Offer
-          </div>
-
-          <h2
-            style={{
-              fontSize: "1.5rem",
-              marginBottom: "0.5rem",
-              color: "#000",
-            }}
-          >
-            Early Bird
-          </h2>
-          <p
-            style={{
-              color: "#aaa",
-              fontSize: "0.9rem",
-              marginBottom: "1.5rem",
-            }}
-          >
-            Dapatkan harga spesial untuk pendaftaran kolektif komunitas atau
-            tim. Semakin rame, semakin seru!
-          </p>
-
-          <h3 style={{ fontSize: "3rem", marginBottom: "1rem", color: "#000" }}>
-            Rp150.000
-          </h3>
-
-          {isRegistrationClosed ? (
-            <button style={buttonStyle} disabled>
-              Pendaftaran Ditutup
-            </button>
-          ) : (
-            <Link to={"/payment"}>
-              <button style={buttonStyle}>Pilih Paket Ini</button>
-            </Link>
-          )}
-
-          <ul style={facilitiesStyle}>
-            <li>✅ Race Jersey</li>
-            <li>✅ BIB Number</li>
-            <li>✅ Medali Finisher</li>
-            <li>✅ Totebag</li>
-            <li>✅ Refreshment</li>
-            <li>✅ Support Medis</li>
-            <li>✅ Dokumen Race</li>
-            <li>✅ Undian Doorprize</li>
-          </ul>
+        {/* toggle switch */}
+        <div
+          onClick={() => !isRegistrationClosed && setLongSleeve(!longSleeve)}
+          role="switch"
+          aria-checked={longSleeve}
+          style={{
+            width: "3rem", height: "1.625rem",
+            borderRadius: "var(--r-full)",
+            background: longSleeve ? pkg.color : "#CBD5E1",
+            position: "relative",
+            cursor: isRegistrationClosed ? "not-allowed" : "pointer",
+            transition: "background var(--t-fast) var(--ease)",
+            flexShrink: 0,
+          }}
+        >
+          <div style={{
+            position: "absolute",
+            top: "3px",
+            left: longSleeve ? "calc(100% - 1.1rem - 3px)" : "3px",
+            width: "1.1rem", height: "1.1rem",
+            borderRadius: "50%",
+            background: "#fff",
+            boxShadow: "0 1px 4px rgba(0,0,0,0.25)",
+            transition: "left var(--t-fast) var(--ease)",
+          }} />
         </div>
       </div>
-    </section>
+
+      {/* Price box */}
+      <div style={{
+        background: pkg.color + "08",
+        border: `1px solid ${pkg.color}20`,
+        borderRadius: "var(--r-md)",
+        padding: "1rem 1.25rem",
+      }}>
+        {/* Early Bird row */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: "0.5rem" }}>
+          <span style={{ fontSize: "var(--fs-xs)", fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.07em" }}>
+            Early Bird
+          </span>
+          <span style={{ fontSize: "var(--fs-2xl)", fontWeight: 800, color: pkg.color, transition: "all var(--t-fast) var(--ease)" }}>
+            Rp{fmt(earlyFinal)}
+          </span>
+        </div>
+
+        {/* Normal row */}
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+          <span style={{ fontSize: "var(--fs-xs)", fontWeight: 700, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.07em" }}>
+            Normal
+          </span>
+          <span style={{ fontSize: "var(--fs-lg)", fontWeight: 600, color: "var(--text-muted)", transition: "all var(--t-fast) var(--ease)" }}>
+            Rp{fmt(normalFinal)}
+          </span>
+        </div>
+
+        {/* Addon note */}
+        {longSleeve && (
+          <div style={{
+            marginTop: "0.625rem",
+            paddingTop: "0.625rem",
+            borderTop: `1px dashed ${pkg.color}30`,
+            display: "flex", alignItems: "center", gap: "0.35rem",
+            fontSize: "var(--fs-xs)", color: pkg.color, fontWeight: 600,
+          }}>
+            <i className="uil uil-check-circle"></i>
+            Termasuk jersey tangan panjang (+Rp10.000)
+          </div>
+        )}
+      </div>
+
+      {/* CTA Button */}
+      {isRegistrationClosed ? (
+        <button
+          disabled
+          style={{
+            width: "100%", padding: "0.875rem",
+            borderRadius: "var(--r-md)",
+            background: "var(--surface-2)", color: "var(--text-muted)",
+            fontSize: "var(--fs-sm)", fontWeight: 600,
+            cursor: "not-allowed", display: "flex",
+            alignItems: "center", justifyContent: "center", gap: "0.5rem",
+          }}
+        >
+          <i className="uil uil-lock"></i> Pendaftaran Ditutup
+        </button>
+      ) : (
+        <Link
+          to={`/payment?kategori=${pkg.category}&lengan=${longSleeve ? "panjang" : "pendek"}`}
+          style={{ display: "block" }}
+        >
+          <button
+            style={{
+              width: "100%", padding: "0.875rem",
+              borderRadius: "var(--r-md)",
+              background: pkg.color, color: "#fff",
+              fontSize: "var(--fs-sm)", fontWeight: 700,
+              display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
+              transition: "opacity var(--t-fast) var(--ease)",
+              border: "none", cursor: "pointer",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          >
+            <i className="uil uil-arrow-right"></i>
+            Daftar Sekarang — {pkg.category}
+            {longSleeve && " + Tangan Panjang"}
+          </button>
+        </Link>
+      )}
+
+      {/* Includes list */}
+      <div>
+        <p style={{
+          fontSize: "var(--fs-xs)", fontWeight: 700, color: "var(--text-muted)",
+          textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: "0.625rem",
+        }}>
+          Sudah Termasuk
+        </p>
+        <ul style={{ display: "grid", gridTemplateColumns: "1fr 1fr", rowGap: "0.35rem", columnGap: "0.5rem" }}>
+          {INCLUDES.map((item) => (
+            <li key={item} style={{ display: "flex", alignItems: "center", gap: "0.4rem", fontSize: "var(--fs-xs)", color: "var(--text-muted)" }}>
+              <i className="uil uil-check" style={{ color: pkg.color, flexShrink: 0, fontSize: "0.875rem" }}></i>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
+
+/* ── Main Section ── */
+const Payments = () => (
+  <section className="section" id="payment" style={{ background: "var(--bg)" }}>
+    <div className="container">
+
+      {/* Header */}
+      <div style={{ textAlign: "center", marginBottom: "3rem" }}>
+        <span className="section__tag">
+          <i className="uil uil-ticket"></i>
+          Tiket
+        </span>
+        <h2 className="section__title">Paket Pendaftaran</h2>
+        <p className="section__subtitle" style={{ marginBottom: 0 }}>
+          Pilih kategori &amp; tambahkan opsi jersey sesuai kebutuhan Anda.
+        </p>
+      </div>
+
+      {/* Open banner */}
+      {!isRegistrationClosed && (
+        <div
+          data-aos="fade-up"
+          data-aos-duration="600"
+          style={{
+            background: "linear-gradient(135deg, #0F2280, #1B3CC0)",
+            color: "#fff",
+            padding: "1.125rem 1.5rem",
+            borderRadius: "var(--r-lg)",
+            marginBottom: "2.5rem",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "0.625rem",
+            flexWrap: "wrap",
+            fontSize: "var(--fs-sm)",
+            fontWeight: 600,
+          }}
+        >
+          <span style={{ fontSize: "1.125rem" }}>🎉</span>
+          Pendaftaran Resmi Dibuka! — Early Bird terbatas, segera amankan slot Anda.
+          <span style={{
+            background: "var(--gold)", color: "var(--blue-900)",
+            fontSize: "var(--fs-xs)", fontWeight: 800,
+            padding: "0.2rem 0.75rem", borderRadius: "var(--r-full)",
+          }}>
+            OPEN NOW
+          </span>
+        </div>
+      )}
+
+      {/* Package cards */}
+      <div style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+        gap: "1.5rem",
+      }}>
+        {PACKAGES.map((pkg, i) => (
+          <PackageCard key={pkg.category} pkg={pkg} index={i} />
+        ))}
+      </div>
+
+    </div>
+  </section>
+);
 
 export default Payments;
