@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../App.css";
 import DewasaImg from "../../assets/Runners/Size.jpeg";
-import KidsImg from "../../assets/Runners/KidsSize.jpeg";
+import KidsImg from "../../assets/Runners/imageSizeRunForNation2026.png";
 
 const ADULT = [
   ["3S", 44, 62], ["2S", 45, 64], ["XS", 47, 66],
