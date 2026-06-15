@@ -2,7 +2,7 @@ import React from "react";
 import "../../App.css";
 
 const FORM_URL =
-  "https://docs.google.com/forms/d/e/1FAIpQLSdcAgdrKgmhseK9ULfD5apMpOa2M1nm-vWrkUB9SuLcx61taw/viewform?embedded=true";
+  "https://bit.ly/PendaftaranRunForNation2026";
 
 const Contact = () => {
   return (
