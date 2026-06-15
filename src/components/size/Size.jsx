@@ -4,20 +4,21 @@ import DewasaImg from "../../assets/Runners/logoSize.png";
 import KidsImg from "../../assets/Runners/logoSize.png";
 
 const ADULT = [
-  ["3S", 44, 62], ["2S", 45, 64], ["XS", 47, 66],
-  ["S",  49, 68], ["M",  50, 70], ["L",  52, 72],
-  ["XL", 54, 74], ["2XL",56, 76], ["3XL",58, 78],
+  ["XXS", 45, 62], ["XS", 47, 65], ["S",  49, 67],
+  ["M",  50, 69], ["L",  52, 70], ["XL", 54, 73],
+  ["2X", 58, 77], ["3X", 60, 79],
 ];
 
 const KIDS = [
-  [2, 30, 40], [4, 32, 46], [6, 34, 48], [8, 36, 50], [10, 38, 51],
+  ["S KDS", 33, 42], ["M KDS", 37, 47],
+  ["L KDS", 41, 53], ["XL KDS", 44, 58],
 ];
 
 const SizeTable = ({ rows }) => (
   <table style={{ width: "100%", borderCollapse: "collapse" }}>
     <thead>
       <tr>
-        {["Size", "Lebar Dada", "Panjang Baju"].map((h) => (
+        {["SIZE", "LB", "TB"].map((h) => (
           <th
             key={h}
             style={{
@@ -187,7 +188,7 @@ const Size = () => {
                     Ukuran {isDewasa ? "Dewasa" : "Kids"}
                   </div>
                   <div style={{ fontSize: "var(--fs-xs)", color: "var(--text-muted)" }}>
-                    {isDewasa ? "Size 3S hingga 3XL" : "Size 2 hingga 10 (tahun)"}
+                    {isDewasa ? "Size XXS hingga 3X" : "Size S KDS hingga XL KDS"}
                   </div>
                 </div>
               </div>
