@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../App.css";
-import DewasaImg from "../../assets/Runners/Size.jpeg";
+import DewasaImg from "../../assets/Runners/imageSizeRunForNation2026.png";
 import KidsImg from "../../assets/Runners/imageSizeRunForNation2026.png";
 
 const ADULT = [
