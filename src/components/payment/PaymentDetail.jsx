@@ -47,7 +47,7 @@ const PaymentDetail = () => {
           display: "flex", alignItems: "center", gap: "0.4rem",
           fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.6)",
           fontWeight: 500, transition: "color var(--t-fast) var(--ease)",
-          zIndex: 10,
+          zIndex: 101,
         }}
         onMouseEnter={(e) => (e.currentTarget.style.color = "#fff")}
         onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.6)")}
