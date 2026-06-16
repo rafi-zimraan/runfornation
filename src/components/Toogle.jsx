@@ -1,21 +1,29 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Toogle.css";
 const Toogle = () => {
-  const setDarkMode = () => {
-    document.querySelector("body").setAttribute("data-theme", "dark");
-  };
-  const setLightMode = () => {
-    document.querySelector("body").setAttribute("data-theme", "light");
-  };
+  const [dark, setDark] = useState(true);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("rfn_theme");
+    const isDark = stored ? stored === "dark" : true;
+    setDark(isDark);
+    document
+      .querySelector("body")
+      .setAttribute("data-theme", isDark ? "dark" : "light");
+  }, []);
 
   const toogleTheme = (e) => {
-    if (e.target.checked) setDarkMode();
-    else setLightMode();
+    const isDark = e.target.checked;
+    setDark(isDark);
+    localStorage.setItem("rfn_theme", isDark ? "dark" : "light");
+    document
+      .querySelector("body")
+      .setAttribute("data-theme", isDark ? "dark" : "light");
   };
   return (
     <>
       <label id="theme-toggle-button">
-        <input type="checkbox" id="toggle" onChange={toogleTheme} />
+        <input type="checkbox" id="toggle" checked={dark} onChange={toogleTheme} />
         {/* <svg
           viewBox="0 0 69.667 44"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -32,7 +40,6 @@ const Toogle = () => {
             id="Component_15_1"
           >
             <g
-              filter="url(#container)"
               transform="matrix(1, 0, 0, 1, -3.5, -3.5)"
             >
               <rect
@@ -49,7 +56,6 @@ const Toogle = () => {
             <g transform="translate(2.333 2.333)" id="button">
               <g data-name="sun" id="sun">
                 <g
-                  filter="url(#sun-outer)"
                   transform="matrix(1, 0, 0, 1, -5.83, -5.83)"
                 >
                   <circle
@@ -63,7 +69,6 @@ const Toogle = () => {
                   ></circle>
                 </g>
                 <g
-                  filter="url(#sun)"
                   transform="matrix(1, 0, 0, 1, -5.83, -5.83)"
                 >
                   <path
@@ -86,7 +91,6 @@ const Toogle = () => {
 
               <g data-name="moon" id="moon">
                 <g
-                  filter="url(#moon)"
                   transform="matrix(1, 0, 0, 1, -31.5, -5.83)"
                 >
                   <circle
@@ -149,7 +153,7 @@ const Toogle = () => {
               </g>
             </g>
 
-            <g filter="url(#cloud)" transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
+            <g transform="matrix(1, 0, 0, 1, -3.5, -3.5)">
               <path
                 fill="#fff"
                 transform="translate(-3466.47 -160.94)"

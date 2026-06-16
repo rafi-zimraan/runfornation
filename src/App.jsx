@@ -84,8 +84,8 @@ const App = () => {
               <Home />
               <About />
               <Size />
-              <Contact />
               <Payments />
+              <Contact />
             </main>
           ),
         },

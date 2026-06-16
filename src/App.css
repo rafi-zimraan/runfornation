@@ -78,12 +78,12 @@
 
 /* Dark Mode */
 [data-theme="dark"] {
-  --bg:         var(--blue-950);
-  --surface:    rgba(255,255,255,0.04);
-  --surface-2:  rgba(255,255,255,0.07);
-  --border:     rgba(255,255,255,0.08);
-  --text:       #E8EDFF;
-  --text-muted: rgba(232,237,255,0.5);
+  --bg:         #080D24;
+  --surface:    #0F1635;
+  --surface-2:  #1A234A;
+  --border:     rgba(245, 204, 0, 0.10);
+  --text:       #DDE3FF;
+  --text-muted: rgba(221, 227, 255, 0.5);
 }
 
 /* ===== RESET ===== */

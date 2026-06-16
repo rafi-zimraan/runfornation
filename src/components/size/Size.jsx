@@ -89,8 +89,8 @@ const Size = () => {
             }}
           >
             {[
-              { key: "dewasa", label: "Dewasa", icon: "uil-user" },
-              { key: "kids",   label: "Kids",   icon: "uil-kid" },
+              { key: "dewasa", label: "Dewasa Unisex", icon: "uil-user" },
+              { key: "kids",   label: "Anak Unisex",  icon: "uil-kid" },
             ].map((t) => (
               <button
                 key={t.key}
@@ -181,11 +181,11 @@ const Size = () => {
                     flexShrink: 0,
                   }}
                 >
-                  <i className="uil uil-tshirt"></i>
+                  <i className={`uil ${isDewasa ? "uil-user" : "uil-kid"}`}></i>
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: "var(--fs-base)", color: "var(--text)" }}>
-                    Ukuran {isDewasa ? "Dewasa" : "Kids"}
+                    {isDewasa ? "Dewasa Unisex" : "Anak Unisex"}
                   </div>
                   <div style={{ fontSize: "var(--fs-xs)", color: "var(--text-muted)" }}>
                     {isDewasa ? "Size XXS hingga 3X" : "Size S KDS hingga XL KDS"}
@@ -222,18 +222,35 @@ const Size = () => {
               style={{
                 marginTop: "1rem",
                 padding: "0.875rem 1.125rem",
-                background: "rgba(27,60,192,0.06)",
-                border: "1px solid rgba(27,60,192,0.12)",
+                background: "var(--surface)",
+                border: "1.5px solid var(--border)",
+                borderLeft: "4px solid var(--blue-600)",
                 borderRadius: "var(--r-md)",
+                boxShadow: "var(--shadow-sm)",
                 display: "flex",
-                gap: "0.5rem",
-                fontSize: "var(--fs-xs)",
-                color: "var(--blue-600)",
-                fontWeight: 500,
+                gap: "0.625rem",
+                alignItems: "flex-start",
               }}
             >
-              <i className="uil uil-lightbulb-alt" style={{ fontSize: "1rem", flexShrink: 0 }}></i>
-              Jika ragu antara dua ukuran, pilih ukuran yang lebih besar untuk kenyamanan maksimal.
+              <div
+                style={{
+                  width: "1.75rem",
+                  height: "1.75rem",
+                  borderRadius: "50%",
+                  background: "var(--blue-100)",
+                  color: "var(--blue-600)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "0.95rem",
+                  flexShrink: 0,
+                }}
+              >
+                <i className="uil uil-lightbulb-alt"></i>
+              </div>
+              <p style={{ fontSize: "var(--fs-xs)", color: "var(--text)", fontWeight: 500, lineHeight: 1.6, margin: 0 }}>
+                <strong style={{ color: "var(--blue-600)" }}>Tips:</strong> Jika ragu antara dua ukuran, pilih ukuran yang lebih besar untuk kenyamanan maksimal.
+              </p>
             </div>
           </div>
         </div>

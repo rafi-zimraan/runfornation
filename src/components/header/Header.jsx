@@ -18,8 +18,8 @@ const Header = () => {
     { href: "/#home",    label: "Home",         icon: "uil-estate",   id: "#home" },
     { href: "/#about",   label: "Ketentuan",    icon: "uil-clipboard-notes", id: "#about" },
     { href: "/#size",    label: "Size",          icon: "uil-ruler",    id: "#size" },
-    { href: "/#contact", label: "Daftar",        icon: "uil-file-alt", id: "#contact" },
     { href: "/#payment", label: "Pembayaran",    icon: "uil-wallet",   id: "#payment" },
+    { href: "/#contact", label: "Daftar",        icon: "uil-file-alt", id: "#contact" },
   ];
 
   return (

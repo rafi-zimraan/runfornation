@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import "../../App.css";
 
@@ -9,6 +9,8 @@ const PRICES = {
   "10K": { earlyBird: 195000, normal: 225000 },
 };
 
+const REG_UNLOCK_KEY = "rfn_reg_unlocked";
+
 const PaymentDetail = () => {
   const [params] = useSearchParams();
   const kategori = params.get("kategori") || "5K";
@@ -16,6 +18,21 @@ const PaymentDetail = () => {
   const pkg      = PRICES[kategori] ?? PRICES["5K"];
   const addon    = isLong ? 10000 : 0;
   const earlyFinal  = pkg.earlyBird + addon;
+
+  // Begitu user sampai di halaman ini (sudah lihat info pembayaran),
+  // buka akses form data diri di section Contact. Konfirmasi WhatsApp
+  // tidak lagi di sini — dipindah ke akhir form data diri.
+  useEffect(() => {
+    localStorage.setItem(
+      REG_UNLOCK_KEY,
+      JSON.stringify({
+        unlocked: true,
+        kategori,
+        lengan: isLong ? "panjang" : "pendek",
+        unlockedAt: new Date().toISOString(),
+      })
+    );
+  }, [kategori, isLong]);
 
   return (
     <div
@@ -152,53 +169,45 @@ const PaymentDetail = () => {
           marginBottom: "1.25rem",
           textAlign: "center",
         }}>
-          Setelah transfer, simpan bukti pembayaran dan konfirmasi ke panitia via WhatsApp dengan melampirkan foto bukti transfer.
+          Setelah transfer, <strong style={{ color: "rgba(255,255,255,0.75)" }}>simpan/screenshot bukti pembayaran Anda</strong> — bukti ini akan diminta saat Anda mengisi form data diri pada langkah berikutnya.
         </p>
 
-        {/* WhatsApp buttons */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-          {[
-            {
-              name:  "Meli",
-              phone: "6285393669366",
-              text:  `Halo kak Meli, saya sudah transfer untuk pendaftaran Run For Nation 2026 kategori ${kategori}${isLong ? " + jersey tangan panjang" : ""}. Saya lampirkan bukti pembayaran.`,
-            },
-            {
-              name:  "Wildan",
-              phone: "6281250721792",
-              text:  `Halo bang Wildan, saya sudah transfer untuk pendaftaran Run For Nation 2026 kategori ${kategori}${isLong ? " + jersey tangan panjang" : ""}. Saya lampirkan bukti pembayaran.`,
-            },
-          ].map(({ name, phone, text }) => (
-            <a
-              key={name}
-              href={`https://wa.me/${phone}?text=${encodeURIComponent(text)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "0.5rem",
-                padding: "0.875rem",
-                borderRadius: "var(--r-md)",
-                background: "#25D366",
-                color: "#fff",
-                fontSize: "var(--fs-sm)",
-                fontWeight: 700,
-                transition: "opacity var(--t-fast) var(--ease)",
-                textDecoration: "none",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              <i className="uil uil-whatsapp" style={{ fontSize: "1.125rem" }}></i>
-              Konfirmasi ke {name}
-              <span style={{ opacity: 0.75, fontSize: "var(--fs-xs)" }}>
-                (+{phone.replace(/^62/, "0").replace(/(\d{4})(\d{4})(\d+)/, "$1-$2-$3")})
-              </span>
-            </a>
-          ))}
+        {/* Next-step notice */}
+        <div style={{
+          background: "rgba(245,204,0,0.1)",
+          border: "1px solid rgba(245,204,0,0.25)",
+          borderRadius: "var(--r-md)",
+          padding: "0.75rem 1rem",
+          marginBottom: "1.5rem",
+          display: "flex",
+          gap: "0.5rem",
+          alignItems: "flex-start",
+        }}>
+          <i className="uil uil-info-circle" style={{ color: "var(--gold)", fontSize: "1rem", flexShrink: 0, marginTop: "0.1rem" }}></i>
+          <p style={{ fontSize: "var(--fs-xs)", color: "rgba(255,255,255,0.8)", lineHeight: 1.6, margin: 0 }}>
+            Form data diri sudah terbuka untuk Anda. Setelah selesai mengisi data &amp; melampirkan bukti transfer di form, jangan lupa <strong style={{ color: "var(--gold)" }}>konfirmasi ke panitia via WhatsApp</strong> di bagian akhir form.
+          </p>
         </div>
+
+        {/* CTA lanjut ke form */}
+        <Link to="/#contact" style={{ display: "block" }}>
+          <button
+            style={{
+              width: "100%", padding: "0.875rem",
+              borderRadius: "var(--r-md)",
+              background: "var(--gold)", color: "var(--blue-900)",
+              fontSize: "var(--fs-sm)", fontWeight: 700,
+              display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
+              border: "none", cursor: "pointer",
+              transition: "opacity var(--t-fast) var(--ease)",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+          >
+            <i className="uil uil-arrow-right"></i>
+            Lanjut Isi Form Pendataan Diri
+          </button>
+        </Link>
 
       </div>
     </div>
