@@ -8,8 +8,7 @@ const FORM_URL =
 const REG_UNLOCK_KEY = "rfn_reg_unlocked";
 
 const WA_CONTACTS = [
-  { name: "Meli",   phone: "6285654944288" },
-  { name: "Wildan", phone: "6281250721792" },
+  { name: "Meli", phone: "6285393669366", desc: "Konfirmasi Pribadi / Personal" },
 ];
 
 // Cek apakah user sudah melalui halaman Detail Pembayaran (memilih paket &
@@ -124,8 +123,10 @@ const Contact = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const kategori = gateInfo?.kategori || "5K";
-  const isLong   = gateInfo?.lengan === "panjang";
+  const kategori  = gateInfo?.kategori || "5K";
+  const isLong    = gateInfo?.lengan === "panjang";
+  const tipeRace  = kategori === "10K" ? "Fun Race" : "Fun Run";
+  const raceColor = kategori === "10K" ? "#D42020" : "#1B3CC0";
 
   return (
     <section className="section" id="contact" style={{ background: "var(--surface-2)" }}>
@@ -167,30 +168,33 @@ const Contact = () => {
               <div
                 style={{
                   padding: "1.25rem 1.5rem",
-                  borderBottom: "1.5px solid var(--border)",
+                  borderBottom: "1.5px solid rgba(245,204,0,0.15)",
                   display: "flex",
                   alignItems: "center",
                   gap: "0.75rem",
-                  background: "linear-gradient(135deg, #0F2280, #1B3CC0)",
+                  background: "linear-gradient(135deg, #0A0E23 0%, #111827 100%)",
                 }}
               >
-                <div
-                  style={{
-                    width: "2.5rem", height: "2.5rem",
-                    borderRadius: "var(--r-md)",
-                    background: "rgba(255,255,255,0.15)",
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    color: "#fff", fontSize: "1.125rem",
-                  }}
-                >
-                  <i className="uil uil-file-edit-alt"></i>
-                </div>
-                <div>
-                  <div style={{ fontWeight: 700, fontSize: "var(--fs-base)", color: "#fff" }}>
-                    Run For Nation 2026 — Form Pendataan Diri
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                  <div
+                    style={{
+                      width: "2.5rem", height: "2.5rem",
+                      borderRadius: "var(--r-md)",
+                      background: "rgba(245,204,0,0.12)",
+                      border: "1px solid rgba(245,204,0,0.25)",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      color: "var(--gold)", fontSize: "1.125rem",
+                    }}
+                  >
+                    <i className="uil uil-file-edit-alt"></i>
                   </div>
-                  <div style={{ fontSize: "var(--fs-xs)", color: "rgba(255,255,255,0.65)" }}>
-                    Isi semua kolom yang tersedia dengan benar
+                  <div>
+                    <div style={{ fontWeight: 700, fontSize: "var(--fs-base)", color: "#fff" }}>
+                      Run For Nation 2026 — Form Pendataan Diri
+                    </div>
+                    <div style={{ fontSize: "var(--fs-xs)", color: "rgba(255,255,255,0.5)" }}>
+                      Isi semua kolom yang tersedia dengan benar
+                    </div>
                   </div>
                 </div>
               </div>
@@ -246,9 +250,9 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.625rem" }}>
-                {WA_CONTACTS.map(({ name, phone }) => {
-                  const text = `Halo kak ${name}, saya sudah mengisi form pendaftaran Run For Nation 2026 kategori ${kategori}${isLong ? " + jersey tangan panjang" : ""} dan sudah transfer. Saya lampirkan bukti pembayaran.`;
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                {WA_CONTACTS.map(({ name, phone, desc }) => {
+                  const text = `Halo kak ${name}, saya sudah mengisi form pendaftaran Run For Nation 2026 kategori ${tipeRace} ${kategori}${isLong ? " + jersey tangan panjang" : ""} dan sudah transfer. Saya lampirkan bukti pembayaran.`;
                   return (
                     <a
                       key={name}
@@ -256,27 +260,61 @@ const Contact = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
-                        display: "flex",
+                        display: "grid",
+                        gridTemplateColumns: "auto 1fr auto",
                         alignItems: "center",
-                        justifyContent: "center",
-                        gap: "0.5rem",
-                        padding: "0.875rem",
+                        gap: "1rem",
+                        padding: "1rem 1.25rem",
+                        borderRadius: "var(--r-lg)",
+                        background: "linear-gradient(135deg, rgba(37,211,102,0.1) 0%, rgba(37,211,102,0.04) 100%)",
+                        border: "1px solid rgba(37,211,102,0.2)",
+                        color: "var(--text)",
+                        textDecoration: "none",
+                        transition: "all var(--t-fast) var(--ease)",
+                        cursor: "pointer",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "rgba(37,211,102,0.5)";
+                        e.currentTarget.style.boxShadow = "0 4px 20px rgba(37,211,102,0.15)";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "rgba(37,211,102,0.2)";
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
+                    >
+                      <div style={{
+                        width: "2.75rem", height: "2.75rem",
                         borderRadius: "var(--r-md)",
                         background: "#25D366",
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: "1.25rem", color: "#fff", flexShrink: 0,
+                      }}>
+                        <i className="uil uil-whatsapp"></i>
+                      </div>
+                      <div style={{ display: "flex", flexDirection: "column", gap: "0.125rem" }}>
+                        <span style={{ fontWeight: 700, fontSize: "var(--fs-sm)", color: "var(--text)" }}>
+                          {name}
+                        </span>
+                        <span style={{ fontSize: "var(--fs-xs)", color: "#25D366", fontWeight: 600 }}>
+                          {desc}
+                        </span>
+                        <span style={{ fontSize: "var(--fs-xs)", color: "var(--text-muted)", opacity: 0.7 }}>
+                          (+{phone.replace(/^62/, "0").replace(/(\d{4})(\d{4})(\d+)/, "$1-$2-$3")})
+                        </span>
+                      </div>
+                      <div style={{
+                        display: "flex", alignItems: "center", gap: "0.375rem",
+                        padding: "0.375rem 0.75rem",
+                        borderRadius: "999px",
+                        background: "#25D366",
                         color: "#fff",
-                        fontSize: "var(--fs-sm)",
+                        fontSize: "var(--fs-xs)",
                         fontWeight: 700,
-                        transition: "opacity var(--t-fast) var(--ease)",
-                        textDecoration: "none",
-                      }}
-                      onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
-                      onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-                    >
-                      <i className="uil uil-whatsapp" style={{ fontSize: "1.125rem" }}></i>
-                      Konfirmasi ke {name}
-                      <span style={{ opacity: 0.75, fontSize: "var(--fs-xs)" }}>
-                        (+{phone.replace(/^62/, "0").replace(/(\d{4})(\d{4})(\d+)/, "$1-$2-$3")})
-                      </span>
+                        whiteSpace: "nowrap",
+                      }}>
+                        <i className="uil uil-message" style={{ fontSize: "0.75rem" }}></i>
+                        Hubungi
+                      </div>
                     </a>
                   );
                 })}

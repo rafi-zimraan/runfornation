@@ -55,7 +55,6 @@ const About = () => {
           <ul className="services__modal-services">
             {[
               "Mendaftar berarti menyetujui seluruh regulasi.",
-              "Seluruh peserta akan dikirimkan email konfirmasi setelah mengisi form pendaftaran.",
               "Umur minimal peserta yaitu 10 tahun. Di bawah usia yang ditentukan wajib didampingi orangtua.",
               "Peserta wajib mengisi form dengan data sesuai dan faktual. Ketidaksesuaian data akan mengakibatkan diskualifikasi tanpa refund.",
               "Peserta yang sudah terdaftar tidak dapat digantikan atau dipindahtangankan.",

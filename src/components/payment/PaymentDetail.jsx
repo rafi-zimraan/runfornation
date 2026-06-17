@@ -13,9 +13,11 @@ const REG_UNLOCK_KEY = "rfn_reg_unlocked";
 
 const PaymentDetail = () => {
   const [params] = useSearchParams();
-  const kategori = params.get("kategori") || "5K";
-  const isLong   = params.get("lengan") === "panjang";
-  const pkg      = PRICES[kategori] ?? PRICES["5K"];
+  const kategori  = params.get("kategori") || "5K";
+  const isLong    = params.get("lengan") === "panjang";
+  const pkg       = PRICES[kategori] ?? PRICES["5K"];
+  const tipeRace  = kategori === "10K" ? "Fun Race" : "Fun Run";
+  const raceColor = kategori === "10K" ? "#D42020" : "#1B3CC0";
   const addon    = isLong ? 10000 : 0;
   const earlyFinal  = pkg.earlyBird + addon;
 
@@ -106,9 +108,20 @@ const PaymentDetail = () => {
           <h2 style={{ fontSize: "var(--fs-2xl)", fontWeight: 800, color: "#fff", marginBottom: "0.375rem" }}>
             Detail Pembayaran
           </h2>
-          <p style={{ fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.55)" }}>
-            Run For Nation 2026 — Fun Run {kategori}
+          <p style={{ fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.55)", marginBottom: "0.75rem" }}>
+            Run For Nation 2026
           </p>
+          <span style={{
+            display: "inline-flex", alignItems: "center", gap: "0.4rem",
+            background: raceColor + "22",
+            border: `1px solid ${raceColor}50`,
+            borderRadius: "var(--r-full)",
+            padding: "0.3rem 0.875rem",
+            fontSize: "var(--fs-xs)", fontWeight: 700, color: raceColor === "#D42020" ? "#ff6b6b" : "#7ba7ff",
+          }}>
+            <i className={`uil ${kategori === "10K" ? "uil-bolt" : "uil-smile-beam"}`}></i>
+            {tipeRace} {kategori}
+          </span>
         </div>
 
         {/* Paket summary */}
@@ -123,7 +136,7 @@ const PaymentDetail = () => {
             Ringkasan Paket
           </p>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-            <span style={{ fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.7)" }}>Fun Run {kategori}</span>
+            <span style={{ fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.7)" }}>{tipeRace} {kategori}</span>
             <span style={{ fontSize: "var(--fs-sm)", fontWeight: 600, color: "#fff" }}>Rp{fmt(pkg.earlyBird)}</span>
           </div>
           {isLong && (

@@ -402,6 +402,110 @@ button {
 
 .home__meta-item i { color: var(--gold); }
 
+.home__desc {
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.6);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.home__desc strong { color: var(--gold); }
+.home__desc em { color: rgba(255,255,255,0.8); font-style: normal; }
+
+/* Category cards */
+.home__cats {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  max-width: 420px;
+}
+
+.home__cat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 1rem 1.125rem;
+  border-radius: var(--r-lg);
+  text-decoration: none;
+  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+  cursor: pointer;
+}
+
+.home__cat:hover {
+  transform: translateY(-3px);
+}
+
+.home__cat--fun {
+  background: rgba(27,60,192,0.18);
+  border: 1.5px solid rgba(100,140,255,0.4);
+  box-shadow: 0 4px 20px rgba(27,60,192,0.2);
+}
+
+.home__cat--race {
+  background: rgba(212,32,32,0.15);
+  border: 1.5px solid rgba(255,100,100,0.4);
+  box-shadow: 0 4px 20px rgba(212,32,32,0.15);
+}
+
+.home__cat--fun:hover { box-shadow: 0 8px 28px rgba(27,60,192,0.35); }
+.home__cat--race:hover { box-shadow: 0 8px 28px rgba(212,32,32,0.3); }
+
+.home__cat-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.25rem;
+}
+
+.home__cat-km {
+  font-size: 1.75rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.home__cat--fun .home__cat-km { color: #7ba7ff; }
+.home__cat--race .home__cat-km { color: #ff7070; }
+
+.home__cat-icon {
+  font-size: 1.375rem;
+  opacity: 0.7;
+}
+
+.home__cat--fun .home__cat-icon { color: #7ba7ff; }
+.home__cat--race .home__cat-icon { color: #ff7070; }
+
+.home__cat-type {
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.home__cat-note {
+  font-size: var(--fs-xs);
+  color: rgba(255,255,255,0.45);
+  margin-top: 0.1rem;
+}
+
+/* VS divider */
+.home__cats-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.home__cats-divider span {
+  font-size: var(--fs-xs);
+  font-weight: 800;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.1em;
+}
+
 .home__actions {
   display: flex;
   flex-wrap: wrap;
