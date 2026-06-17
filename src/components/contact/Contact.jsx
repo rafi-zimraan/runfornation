@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
 
@@ -11,10 +11,6 @@ const WA_CONTACTS = [
   { name: "Meli", phone: "6285393669366", desc: "Konfirmasi Pribadi / Personal" },
 ];
 
-// Cek apakah user sudah melalui halaman Detail Pembayaran (memilih paket &
-// melihat info rekening). Ini gate sisi client (localStorage), bukan
-// verifikasi pembayaran sungguhan — konfirmasi WhatsApp di akhir form tetap
-// jadi langkah yang diverifikasi manual oleh panitia.
 const readGateInfo = () => {
   try {
     const raw = localStorage.getItem(REG_UNLOCK_KEY);
@@ -26,102 +22,9 @@ const readGateInfo = () => {
   }
 };
 
-/* ── Modal custom pengganti window.alert() ── */
-const GateModal = ({ onClose }) => (
-  <div
-    onClick={onClose}
-    style={{
-      position: "fixed",
-      inset: 0,
-      zIndex: 999,
-      background: "rgba(10,14,35,0.6)",
-      backdropFilter: "blur(6px)",
-      WebkitBackdropFilter: "blur(6px)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: "1.5rem",
-    }}
-  >
-    <div
-      onClick={(e) => e.stopPropagation()}
-      data-aos="zoom-in"
-      data-aos-duration="350"
-      style={{
-        background: "var(--surface)",
-        border: "1.5px solid var(--border)",
-        borderRadius: "var(--r-xl)",
-        boxShadow: "0 32px 80px rgba(0,0,0,0.45)",
-        maxWidth: "420px",
-        width: "100%",
-        padding: "2rem 1.75rem",
-        textAlign: "center",
-        position: "relative",
-      }}
-    >
-      <button
-        onClick={onClose}
-        aria-label="Tutup"
-        style={{
-          position: "absolute", top: "0.875rem", right: "0.875rem",
-          background: "transparent", border: "none",
-          color: "var(--text-muted)", fontSize: "1.375rem",
-          cursor: "pointer", lineHeight: 1, padding: "0.25rem",
-        }}
-      >
-        <i className="uil uil-times"></i>
-      </button>
-
-      <div style={{
-        width: "3.5rem", height: "3.5rem",
-        borderRadius: "50%",
-        background: "rgba(212,32,32,0.1)", color: "#D42020",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        fontSize: "1.5rem", margin: "0 auto 1.25rem",
-      }}>
-        <i className="uil uil-lock"></i>
-      </div>
-
-      <h3 style={{ fontSize: "var(--fs-lg)", fontWeight: 700, color: "var(--text)", marginBottom: "0.625rem" }}>
-        Pendaftaran Belum Bisa Diisi
-      </h3>
-      <p style={{ fontSize: "var(--fs-sm)", color: "var(--text-muted)", lineHeight: 1.7, marginBottom: "1.5rem" }}>
-        Silakan pilih paket &amp; lihat detail pembayaran terlebih dahulu. Form data diri akan terbuka setelah Anda menyelesaikan langkah pembayaran.
-      </p>
-
-      <Link to="/#payment" style={{ display: "block" }} onClick={onClose}>
-        <button
-          style={{
-            width: "100%", padding: "0.875rem",
-            borderRadius: "var(--r-md)",
-            background: "#1B3CC0", color: "#fff",
-            fontSize: "var(--fs-sm)", fontWeight: 700,
-            border: "none", cursor: "pointer",
-            display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem",
-            transition: "opacity var(--t-fast) var(--ease)",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.88")}
-          onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-        >
-          <i className="uil uil-wallet"></i>
-          Lihat Paket Pembayaran
-        </button>
-      </Link>
-    </div>
-  </div>
-);
-
 const Contact = () => {
-  const [gateInfo, setGateInfo] = useState(readGateInfo);
-  const [showModal, setShowModal] = useState(false);
+  const [gateInfo] = useState(readGateInfo);
   const isUnlocked = !!gateInfo;
-
-  // Tampilkan modal sekali saat section ini mount, kalau user belum
-  // melalui halaman Detail Pembayaran.
-  useEffect(() => {
-    if (!isUnlocked) setShowModal(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const kategori  = gateInfo?.kategori || "5K";
   const isLong    = gateInfo?.lengan === "panjang";
@@ -131,8 +34,6 @@ const Contact = () => {
   return (
     <section className="section" id="contact" style={{ background: "var(--surface-2)" }}>
       <div className="container">
-
-        {showModal && <GateModal onClose={() => setShowModal(false)} />}
 
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
@@ -259,27 +160,14 @@ const Contact = () => {
                       href={`https://wa.me/${phone}?text=${encodeURIComponent(text)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{
-                        display: "grid",
-                        gridTemplateColumns: "auto 1fr auto",
-                        alignItems: "center",
-                        gap: "1rem",
-                        padding: "1rem 1.25rem",
-                        borderRadius: "var(--r-lg)",
-                        background: "linear-gradient(135deg, rgba(37,211,102,0.1) 0%, rgba(37,211,102,0.04) 100%)",
-                        border: "1px solid rgba(37,211,102,0.2)",
-                        color: "var(--text)",
-                        textDecoration: "none",
-                        transition: "all var(--t-fast) var(--ease)",
-                        cursor: "pointer",
-                      }}
+                      className="contact__wa-link"
                       onMouseEnter={(e) => {
                         e.currentTarget.style.borderColor = "rgba(37,211,102,0.5)";
                         e.currentTarget.style.boxShadow = "0 4px 20px rgba(37,211,102,0.15)";
                       }}
                       onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = "rgba(37,211,102,0.2)";
-                        e.currentTarget.style.boxShadow = "none";
+                        e.currentTarget.style.borderColor = "";
+                        e.currentTarget.style.boxShadow = "";
                       }}
                     >
                       <div style={{
@@ -302,16 +190,7 @@ const Contact = () => {
                           (+{phone.replace(/^62/, "0").replace(/(\d{4})(\d{4})(\d+)/, "$1-$2-$3")})
                         </span>
                       </div>
-                      <div style={{
-                        display: "flex", alignItems: "center", gap: "0.375rem",
-                        padding: "0.375rem 0.75rem",
-                        borderRadius: "999px",
-                        background: "#25D366",
-                        color: "#fff",
-                        fontSize: "var(--fs-xs)",
-                        fontWeight: 700,
-                        whiteSpace: "nowrap",
-                      }}>
+                      <div className="contact__wa-badge">
                         <i className="uil uil-message" style={{ fontSize: "0.75rem" }}></i>
                         Hubungi
                       </div>
@@ -326,6 +205,7 @@ const Contact = () => {
           <div
             data-aos="fade-up"
             data-aos-duration="800"
+            className="contact__gate-card"
             style={{
               background: "var(--surface)",
               border: "1.5px solid var(--border)",
@@ -333,7 +213,6 @@ const Contact = () => {
               boxShadow: "var(--shadow-sm)",
               maxWidth: "800px",
               margin: "0 auto",
-              padding: "3rem 2rem",
               textAlign: "center",
             }}
           >

@@ -19,7 +19,6 @@ const App = () => {
   useEffect(() => {
     Aos.init();
 
-    // Tambahkan script Pixel ke nih <head>
     const script = document.createElement("script");
     script.innerHTML = `
       !(function (f, b, e, v, n, t, s) {
@@ -97,7 +96,6 @@ const App = () => {
     },
   ]);
 
-  // routernya di-return
   return <RouterProvider router={routes} />;
 };
 
