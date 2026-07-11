@@ -14,6 +14,7 @@ import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import PaymentDetail from "./components/payment/PaymentDetail";
 import ScrollToHash from "./components/scrollToHash/ScrollToHash";
 import Size from "./components/size/Size";
+import BuyerFeedToast from "./components/notifications/BuyerFeedToast";
 
 const App = () => {
   useEffect(() => {
@@ -69,6 +70,7 @@ const App = () => {
           <Outlet />
           <Footer />
           <ScrollUp />
+          <BuyerFeedToast />
         </>
       ),
       errorElement: (

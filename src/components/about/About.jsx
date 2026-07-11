@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../App.css";
-import LogoImg from "../../assets/Runners/logoRunFornationTwo.jpeg";
+import LogoImg from "../../assets/Runners/bannerRunForNationFixs.jpeg";
 import Info from "./Info";
 
 const About = () => {
@@ -22,7 +22,13 @@ const About = () => {
         <div className="about__container">
           {/* Image */}
           <div className="about__img-wrap" data-aos="fade-right" data-aos-duration="800">
-            <img src={LogoImg} alt="Run For Nation 2026" className="about__img" />
+            <img
+              src={LogoImg}
+              alt="Run For Nation 2026"
+              className="about__img"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
           {/* Data */}

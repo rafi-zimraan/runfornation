@@ -108,6 +108,8 @@ const Footer = () => {
               <img
                 src={GriyaLogo}
                 alt="Griya IT Nusantara"
+                loading="lazy"
+                decoding="async"
                 style={{
                   height: "2rem",
                   width: "auto",

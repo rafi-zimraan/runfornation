@@ -118,14 +118,7 @@ const Size = () => {
         </div>
 
         {/* Main grid */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "3rem",
-            alignItems: "start",
-          }}
-        >
+        <div className="size__grid">
           {/* Image */}
           <div
             data-aos="fade-right"
@@ -135,6 +128,8 @@ const Size = () => {
             <img
               src={isDewasa ? DewasaImg : KidsImg}
               alt={`Size Chart ${isDewasa ? "Dewasa" : "Kids"}`}
+              loading="lazy"
+              decoding="async"
               style={{
                 width: "100%",
                 maxWidth: "380px",

@@ -260,7 +260,7 @@ const PackageCard = ({ pkg, index }) => {
           padding: "1rem 1.25rem",
         }}
       >
-        {/* Early Bird row */}
+        {/* Early Bird row — sold out */}
         <div
           style={{
             display: "flex",
@@ -271,6 +271,9 @@ const PackageCard = ({ pkg, index }) => {
         >
           <span
             style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "0.375rem",
               fontSize: "var(--fs-xs)",
               fontWeight: 700,
               color: "var(--text-muted)",
@@ -279,20 +282,35 @@ const PackageCard = ({ pkg, index }) => {
             }}
           >
             Early Bird
+            <span
+              style={{
+                fontSize: "0.65rem",
+                fontWeight: 800,
+                color: "#D42020",
+                background: "#D4202015",
+                padding: "0.1rem 0.45rem",
+                borderRadius: "var(--r-full)",
+                textTransform: "uppercase",
+                letterSpacing: "0.02em",
+              }}
+            >
+              Habis
+            </span>
           </span>
           <span
             style={{
-              fontSize: "var(--fs-2xl)",
-              fontWeight: 800,
-              color: pkg.color,
-              transition: "all var(--t-fast) var(--ease)",
+              fontSize: "var(--fs-sm)",
+              fontWeight: 600,
+              color: "var(--text-muted)",
+              textDecoration: "line-through",
+              opacity: 0.65,
             }}
           >
             Rp{fmt(earlyFinal)}
           </span>
         </div>
 
-        {/* Normal row */}
+        {/* Normal row — primary price */}
         <div
           style={{
             display: "flex",
@@ -309,13 +327,13 @@ const PackageCard = ({ pkg, index }) => {
               letterSpacing: "0.07em",
             }}
           >
-            Normal
+            Harga Normal
           </span>
           <span
             style={{
-              fontSize: "var(--fs-lg)",
-              fontWeight: 600,
-              color: "var(--text-muted)",
+              fontSize: "var(--fs-3xl)",
+              fontWeight: 800,
+              color: pkg.color,
               transition: "all var(--t-fast) var(--ease)",
             }}
           >
@@ -603,8 +621,8 @@ const Payments = () => (
           }}
         >
           <span style={{ fontSize: "1.125rem" }}>🎉</span>
-          Pendaftaran Resmi Dibuka! — Early Bird terbatas, segera amankan slot
-          Anda.
+          Pendaftaran Resmi Dibuka! — Early Bird sudah habis, harga saat ini
+          Normal.
           <span
             style={{
               background: "var(--gold)",

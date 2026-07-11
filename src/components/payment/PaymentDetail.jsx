@@ -19,7 +19,7 @@ const PaymentDetail = () => {
   const tipeRace  = kategori === "10K" ? "Fun Race" : "Fun Run";
   const raceColor = kategori === "10K" ? "#D42020" : "#1B3CC0";
   const addon    = isLong ? 10000 : 0;
-  const earlyFinal  = pkg.earlyBird + addon;
+  const normalFinal = pkg.normal + addon;
 
   // Begitu user sampai di halaman ini (sudah lihat info pembayaran),
   // buka akses form data diri di section Contact. Konfirmasi WhatsApp
@@ -137,7 +137,7 @@ const PaymentDetail = () => {
           </p>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
             <span style={{ fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.7)" }}>{tipeRace} {kategori}</span>
-            <span style={{ fontSize: "var(--fs-sm)", fontWeight: 600, color: "#fff" }}>Rp{fmt(pkg.earlyBird)}</span>
+            <span style={{ fontSize: "var(--fs-sm)", fontWeight: 600, color: "#fff" }}>Rp{fmt(pkg.normal)}</span>
           </div>
           {isLong && (
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
@@ -146,8 +146,8 @@ const PaymentDetail = () => {
             </div>
           )}
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", marginTop: "0.75rem", paddingTop: "0.75rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-            <span style={{ fontSize: "var(--fs-sm)", fontWeight: 700, color: "#fff" }}>Total (Early Bird)</span>
-            <span style={{ fontSize: "var(--fs-xl)", fontWeight: 900, color: "var(--gold)" }}>Rp{fmt(earlyFinal)}</span>
+            <span style={{ fontSize: "var(--fs-sm)", fontWeight: 700, color: "#fff" }}>Total (Harga Normal)</span>
+            <span style={{ fontSize: "var(--fs-xl)", fontWeight: 900, color: "var(--gold)" }}>Rp{fmt(normalFinal)}</span>
           </div>
         </div>
 

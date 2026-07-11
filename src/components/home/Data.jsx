@@ -1,6 +1,6 @@
 import React from "react";
 import "../../App.css";
-import PromoImg from "../../assets/Runners/logoRunFornationTwo.jpeg";
+import PromoImg from "../../assets/Runners/bannerRunForNationFixs.jpeg";
 
 const Data = () => {
   return (
@@ -107,6 +107,8 @@ const Data = () => {
             src={PromoImg}
             alt="Run For Nation 2026 — Early Bird Ticket"
             className="home__promo-img"
+            fetchpriority="high"
+            decoding="async"
           />
         </div>
       </div>
