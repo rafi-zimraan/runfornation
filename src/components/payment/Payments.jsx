@@ -294,7 +294,7 @@ const PackageCard = ({ pkg, index }) => {
                 letterSpacing: "0.02em",
               }}
             >
-              Habis
+              Sold Out
             </span>
           </span>
           <span
