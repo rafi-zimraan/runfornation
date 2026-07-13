@@ -26,7 +26,7 @@ describe("PaymentDetail — total transfer harus pakai harga Normal (Early Bird 
   it("menampilkan total Rp235.000 untuk 10K + tangan panjang (225.000 + 10.000)", () => {
     renderAt("/payment?kategori=10K&lengan=panjang");
     expect(screen.getByText("Rp235.000")).toBeInTheDocument();
-    expect(screen.getByText("Jersey Tangan Panjang")).toBeInTheDocument();
+    expect(screen.getByText("Jersey Lengan Panjang")).toBeInTheDocument();
   });
 
   it("membuka gate form pendataan diri di localStorage saat halaman dibuka", () => {

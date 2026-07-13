@@ -18,10 +18,10 @@ describe("Payments — harga & Early Bird sold out", () => {
     expect(screen.getByText("Rp225.000")).toBeInTheDocument(); // 10K normal
   });
 
-  it("menampilkan harga Early Bird dicoret dengan badge Habis", () => {
+  it("menampilkan harga Early Bird dicoret dengan badge Sold Out", () => {
     renderPayments();
-    const habisBadges = screen.getAllByText("Habis");
-    expect(habisBadges).toHaveLength(2); // satu per kartu paket
+    const soldOutBadges = screen.getAllByText("Sold Out");
+    expect(soldOutBadges).toHaveLength(2); // satu per kartu paket
 
     const earlyBird5K = screen.getByText("Rp165.000");
     expect(earlyBird5K).toHaveStyle({ textDecoration: "line-through" });

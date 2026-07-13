@@ -141,7 +141,7 @@ const PaymentDetail = () => {
           </div>
           {isLong && (
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-              <span style={{ fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.7)" }}>Jersey Tangan Panjang</span>
+              <span style={{ fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.7)" }}>Jersey Lengan Panjang</span>
               <span style={{ fontSize: "var(--fs-sm)", fontWeight: 600, color: "var(--gold)" }}>+Rp10.000</span>
             </div>
           )}
