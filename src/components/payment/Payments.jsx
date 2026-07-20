@@ -600,45 +600,6 @@ const Payments = () => (
         </div>
       </div>
 
-      {/* Early Bird sold out banner */}
-      <div
-        data-aos="fade-up"
-        data-aos-duration="600"
-        style={{
-          background: "linear-gradient(135deg, #7A1020, #B01E33)",
-          color: "#fff",
-          padding: "1.125rem 1.5rem",
-          borderRadius: "var(--r-lg)",
-          marginBottom: "2.5rem",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          gap: "0.625rem",
-          flexWrap: "wrap",
-          fontSize: "var(--fs-sm)",
-          fontWeight: 600,
-        }}
-      >
-        <span style={{ fontSize: "1.125rem" }}>🎟️</span>
-        Tiket{" "}
-        <span style={{ textDecoration: "line-through", opacity: 0.7 }}>
-          Early Bird
-        </span>{" "}
-        sudah ditutup karena Sold Out — pendaftaran kini dengan harga Normal.
-        <span
-          style={{
-            background: "var(--gold)",
-            color: "var(--blue-900)",
-            fontSize: "var(--fs-xs)",
-            fontWeight: 800,
-            padding: "0.2rem 0.75rem",
-            borderRadius: "var(--r-full)",
-          }}
-        >
-          SOLD OUT
-        </span>
-      </div>
-
       {/* Package cards */}
       <div
         style={{

@@ -27,7 +27,7 @@ dokumen ini usulan berbasis kondisi kode & data saat ini.
 
 ## Fase 2 — Peningkatan Jangka Pendek
 
-- [ ] Kompres gambar di `assets/Runners/` ke WebP/AVIF (terutama `bannerRunForNationFixs.jpeg` 368K & `LogoSizeNew.jpeg` 169K)
+- [ ] Kompres gambar di `assets/Runners/` ke WebP/AVIF (terutama `bannerRunForNationFixs.jpeg` 368K & `ukuranbajurunfornation.jpeg` 169K)
 - [ ] Tambahkan `npm test` ke GitHub Actions (`.github/workflows/deploy.yml`) supaya build gagal jika ada test yang rusak
 - [ ] Uji nyata di perangkat iOS/Android fisik (bukan cuma review kode & breakpoint CSS)
 - [ ] Tambahkan consent/pemberitahuan di form pendaftaran bahwa nama & kategori berpotensi tampil di widget publik (lihat `brd.md` § 7)

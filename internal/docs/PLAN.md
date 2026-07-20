@@ -85,7 +85,7 @@ statis. Sudah diverifikasi tampil benar di browser.
 | Gambar tanpa lazy loading | Gambar below-the-fold (About, Size, Footer) ikut dimuat sekaligus di awal — boros data terutama di koneksi mobile. | **Sudah ditambahkan** `loading="lazy" decoding="async"`; gambar hero (LCP) diberi `fetchPriority="high"` sebagai gantinya. |
 | CLAUDE.md basi | Menyebut Contact.jsx & PaymentDetail.jsx fetch CSV Google Sheets untuk kuota (`MAX_PESERTA`) — ini sudah tidak ada di kode. | **Sudah diperbarui** (lihat task Upgrade CLAUDE.md). |
 | Belum ada automated test | Tidak ada test framework sebelum sesi ini. | **Sudah ditambahkan** Vitest + Testing Library, 14 test (lihat `internal/docs/TESTING_CHECKLIST.md`). |
-| Ukuran gambar besar | Aset yang dipakai (`bannerRunForNationFixs.jpeg` 368K, `LogoSizeNew.jpeg` 169K) belum dikompres/di-resize untuk web. | Belum dikerjakan — lihat Roadmap § 5. |
+| Ukuran gambar besar | Aset yang dipakai (`bannerRunForNationFixs.jpeg` 368K, `ukuranbajurunfornation.jpeg` 169K) belum dikompres/di-resize untuk web. | Belum dikerjakan — lihat Roadmap § 5. |
 
 ---
 
@@ -97,7 +97,7 @@ statis. Sudah diverifikasi tampil benar di browser.
 - [x] ~~Tambah automated test~~ — Vitest + Testing Library, 14 test, jalan lokal via `npm test`.
 - [x] ~~Progressive image loading~~ — `loading="lazy"` untuk gambar below-the-fold, `fetchPriority="high"` untuk hero.
 - [x] ~~Perbaiki responsivitas Size Chart & safe-area iOS~~ — selesai 2026-07-11.
-- [ ] **Kompres semua gambar** di `assets/Runners/` ke format web-optimized (WebP/AVIF) + resize sesuai kebutuhan tampilan aktual (`bannerRunForNationFixs.jpeg` 368K & `LogoSizeNew.jpeg` 169K masih bisa dipangkas jauh).
+- [ ] **Kompres semua gambar** di `assets/Runners/` ke format web-optimized (WebP/AVIF) + resize sesuai kebutuhan tampilan aktual (`bannerRunForNationFixs.jpeg` 368K & `ukuranbajurunfornation.jpeg` 169K masih bisa dipangkas jauh).
 - [ ] **Tambah automated test ke CI** — jalankan `npm test` di GitHub Actions sebelum build/deploy (`.github/workflows/deploy.yml`), saat ini baru jalan manual/lokal.
 - [ ] **Reaktifkan pengecekan kuota peserta** bila dibutuhkan lagi (dulu via Google Sheets CSV + PapaParse — saat ini tidak dipakai karena form sudah pindah ke Google Form native).
 - [ ] **Uji nyata di perangkat iOS/Android fisik** (Safari iPhone, Chrome Android, iPad) — perbaikan safe-area & responsive grid sudah dilakukan berbasis review kode & breakpoint CSS, tapi belum diverifikasi visual di device/emulator sungguhan.
