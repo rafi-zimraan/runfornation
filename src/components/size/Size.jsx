@@ -1,6 +1,6 @@
 import React from "react";
 import "../../App.css";
-import DewasaImg from "../../assets/Runners/sizechartjersey2026-dewasa.png";
+import DewasaImg from "../../assets/Runners/sizechartjersey2026-dewasa.webp";
 
 const ADULT = [
   ["M",  50, 69], ["L",  52, 70], ["XL", 54, 73],
