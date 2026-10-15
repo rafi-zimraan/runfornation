@@ -1,14 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../App.css";
-import DewasaImg from "../../assets/Runners/sizechartjersey2026.jpeg";
-import KidsImg from "../../assets/Runners/sizechartjersey2026.jpeg";
+import DewasaImg from "../../assets/Runners/sizechartjersey2026-dewasa.png";
 
 const ADULT = [
   ["M",  50, 69], ["L",  52, 70], ["XL", 54, 73],
-];
-
-const KIDS = [
-  ["M KDS", 37, 47], ["L KDS", 41, 53], ["XL KDS", 44, 58],
 ];
 
 const SizeTable = ({ rows }) => (
@@ -56,9 +51,6 @@ const SizeTable = ({ rows }) => (
 );
 
 const Size = () => {
-  const [tab, setTab] = useState("dewasa");
-  const isDewasa = tab === "dewasa";
-
   return (
     <section className="size section" id="size">
       <div className="container">
@@ -70,48 +62,9 @@ const Size = () => {
             Jersey
           </span>
           <h2 className="section__title">Size Chart</h2>
-          <p className="section__subtitle" style={{ marginBottom: "1.75rem" }}>
-            Panduan ukuran jersey Run For Nation 2026. Toleransi 2cm.
+          <p className="section__subtitle">
+            Panduan ukuran jersey Dewasa Unisex Run For Nation 2026. Toleransi 2cm.
           </p>
-
-          {/* Tab switcher */}
-          <div
-            style={{
-              display: "inline-flex",
-              background: "var(--surface)",
-              border: "1.5px solid var(--border)",
-              borderRadius: "var(--r-lg)",
-              padding: "0.3rem",
-              gap: "0.25rem",
-            }}
-          >
-            {[
-              { key: "dewasa", label: "Dewasa Unisex", icon: "uil-user" },
-              { key: "kids",   label: "Anak Unisex",  icon: "uil-kid" },
-            ].map((t) => (
-              <button
-                key={t.key}
-                onClick={() => setTab(t.key)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.4rem",
-                  padding: "0.55rem 1.5rem",
-                  borderRadius: "var(--r-md)",
-                  fontSize: "var(--fs-sm)",
-                  fontWeight: 600,
-                  background: tab === t.key ? "var(--blue-600)" : "transparent",
-                  color: tab === t.key ? "#fff" : "var(--text-muted)",
-                  transition: "all var(--t-fast) var(--ease)",
-                  cursor: "pointer",
-                  border: "none",
-                }}
-              >
-                <i className={`uil ${t.icon}`}></i>
-                {t.label}
-              </button>
-            ))}
-          </div>
         </div>
 
         {/* Main grid */}
@@ -123,8 +76,8 @@ const Size = () => {
             style={{ display: "flex", justifyContent: "center" }}
           >
             <img
-              src={isDewasa ? DewasaImg : KidsImg}
-              alt={`Size Chart ${isDewasa ? "Dewasa" : "Kids"}`}
+              src={DewasaImg}
+              alt="Size Chart Jersey Dewasa Unisex"
               loading="lazy"
               decoding="async"
               style={{
@@ -173,21 +126,21 @@ const Size = () => {
                     flexShrink: 0,
                   }}
                 >
-                  <i className={`uil ${isDewasa ? "uil-user" : "uil-kid"}`}></i>
+                  <i className="uil uil-user"></i>
                 </div>
                 <div>
                   <div style={{ fontWeight: 700, fontSize: "var(--fs-base)", color: "var(--text)" }}>
-                    {isDewasa ? "Dewasa Unisex" : "Anak Unisex"}
+                    Dewasa Unisex
                   </div>
                   <div style={{ fontSize: "var(--fs-xs)", color: "var(--text-muted)" }}>
-                    {isDewasa ? "Tersedia size M, L & XL" : "Tersedia size M KDS, L KDS & XL KDS"}
+                    Tersedia size M, L & XL
                   </div>
                 </div>
               </div>
 
               {/* Table */}
               <div style={{ overflowX: "auto" }}>
-                <SizeTable rows={isDewasa ? ADULT : KIDS} />
+                <SizeTable rows={ADULT} />
               </div>
 
               {/* Footer note */}
