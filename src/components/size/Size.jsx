@@ -1,17 +1,14 @@
 import React, { useState } from "react";
 import "../../App.css";
-import DewasaImg from "../../assets/Runners/ukuranbajurunfornation2.jpeg";
-import KidsImg from "../../assets/Runners/ukuranbajurunfornation2.jpeg";
+import DewasaImg from "../../assets/Runners/sizechartjersey2026.jpeg";
+import KidsImg from "../../assets/Runners/sizechartjersey2026.jpeg";
 
 const ADULT = [
-  ["XXS", 45, 62], ["XS", 47, 65], ["S",  49, 67],
   ["M",  50, 69], ["L",  52, 70], ["XL", 54, 73],
-  ["2X", 58, 77], ["3X", 60, 79],
 ];
 
 const KIDS = [
-  ["S KDS", 33, 42], ["M KDS", 37, 47],
-  ["L KDS", 41, 53], ["XL KDS", 44, 58],
+  ["M KDS", 37, 47], ["L KDS", 41, 53], ["XL KDS", 44, 58],
 ];
 
 const SizeTable = ({ rows }) => (
@@ -183,7 +180,7 @@ const Size = () => {
                     {isDewasa ? "Dewasa Unisex" : "Anak Unisex"}
                   </div>
                   <div style={{ fontSize: "var(--fs-xs)", color: "var(--text-muted)" }}>
-                    {isDewasa ? "Size XXS hingga 3X" : "Size S KDS hingga XL KDS"}
+                    {isDewasa ? "Tersedia size M, L & XL" : "Tersedia size M KDS, L KDS & XL KDS"}
                   </div>
                 </div>
               </div>
