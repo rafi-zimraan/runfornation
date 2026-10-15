@@ -28,7 +28,7 @@ describe("Contact — gate form pendataan diri", () => {
   it("membuka form iframe & tombol WA jika localStorage sudah unlocked", () => {
     localStorage.setItem(
       REG_UNLOCK_KEY,
-      JSON.stringify({ unlocked: true, kategori: "10K", lengan: "panjang" })
+      JSON.stringify({ unlocked: true, kategori: "10K" })
     );
     renderContact();
 
@@ -39,7 +39,7 @@ describe("Contact — gate form pendataan diri", () => {
     const waLink = screen.getByRole("link", { name: /meli/i });
     expect(waLink).toHaveAttribute("href", expect.stringContaining("wa.me/6285393669366"));
     expect(decodeURIComponent(waLink.getAttribute("href"))).toContain(
-      "Fun Race 10K + jersey tangan panjang"
+      "Fun Race 10K dan sudah transfer"
     );
   });
 

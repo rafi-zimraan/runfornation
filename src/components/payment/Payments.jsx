@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
 
@@ -46,11 +46,8 @@ const fmt = (n) => new Intl.NumberFormat("id-ID").format(n);
 
 /* ── per-card component ── */
 const PackageCard = ({ pkg, index }) => {
-  const [longSleeve, setLongSleeve] = useState(false);
-
-  const addon = longSleeve ? 10000 : 0;
-  const earlyFinal = pkg.earlyBird + addon;
-  const normalFinal = pkg.normal + addon;
+  const earlyFinal = pkg.earlyBird;
+  const normalFinal = pkg.normal;
 
   return (
     <div
@@ -179,78 +176,6 @@ const PackageCard = ({ pkg, index }) => {
         </p>
       </div>
 
-      {/* ── Long Sleeve Toggle ── */}
-      <div
-        style={{
-          background: longSleeve ? `${pkg.color}08` : "var(--surface-2)",
-          border: `1.5px solid ${longSleeve ? pkg.color + "30" : "var(--border)"}`,
-          borderRadius: "var(--r-md)",
-          padding: "0.875rem 1rem",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "0.75rem",
-          transition: "all var(--t-fast) var(--ease)",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: "0.625rem" }}>
-          <i
-            className="uil uil-tshirt"
-            style={{
-              fontSize: "1.25rem",
-              color: longSleeve ? pkg.color : "var(--text-muted)",
-            }}
-          ></i>
-          <div>
-            <div
-              style={{
-                fontSize: "var(--fs-sm)",
-                fontWeight: 600,
-                color: "var(--text)",
-              }}
-            >
-              Tambahan Lengan Panjang
-            </div>
-            <div
-              style={{ fontSize: "var(--fs-xs)", color: "var(--text-muted)" }}
-            >
-              +Rp10.000
-            </div>
-          </div>
-        </div>
-
-        {/* toggle switch */}
-        <div
-          onClick={() => !isRegistrationClosed && setLongSleeve(!longSleeve)}
-          role="switch"
-          aria-checked={longSleeve}
-          style={{
-            width: "3rem",
-            height: "1.625rem",
-            borderRadius: "var(--r-full)",
-            background: longSleeve ? pkg.color : "#CBD5E1",
-            position: "relative",
-            cursor: isRegistrationClosed ? "not-allowed" : "pointer",
-            transition: "background var(--t-fast) var(--ease)",
-            flexShrink: 0,
-          }}
-        >
-          <div
-            style={{
-              position: "absolute",
-              top: "3px",
-              left: longSleeve ? "calc(100% - 1.1rem - 3px)" : "3px",
-              width: "1.1rem",
-              height: "1.1rem",
-              borderRadius: "50%",
-              background: "#fff",
-              boxShadow: "0 1px 4px rgba(0,0,0,0.25)",
-              transition: "left var(--t-fast) var(--ease)",
-            }}
-          />
-        </div>
-      </div>
-
       {/* Price box */}
       <div
         style={{
@@ -341,25 +266,6 @@ const PackageCard = ({ pkg, index }) => {
           </span>
         </div>
 
-        {/* Addon note */}
-        {longSleeve && (
-          <div
-            style={{
-              marginTop: "0.625rem",
-              paddingTop: "0.625rem",
-              borderTop: `1px dashed ${pkg.color}30`,
-              display: "flex",
-              alignItems: "center",
-              gap: "0.35rem",
-              fontSize: "var(--fs-xs)",
-              color: pkg.color,
-              fontWeight: 600,
-            }}
-          >
-            <i className="uil uil-check-circle"></i>
-            Termasuk jersey tangan panjang (+Rp10.000)
-          </div>
-        )}
       </div>
 
       {/* CTA Button */}
@@ -385,7 +291,7 @@ const PackageCard = ({ pkg, index }) => {
         </button>
       ) : (
         <Link
-          to={`/payment?kategori=${pkg.category}&lengan=${longSleeve ? "panjang" : "pendek"}`}
+          to={`/payment?kategori=${pkg.category}`}
           style={{ display: "block" }}
         >
           <button
@@ -410,7 +316,6 @@ const PackageCard = ({ pkg, index }) => {
           >
             <i className="uil uil-arrow-right"></i>
             Daftar Sekarang — {pkg.category}
-            {longSleeve && " + Lengan Panjang"}
           </button>
         </Link>
       )}

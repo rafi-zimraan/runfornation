@@ -19,18 +19,18 @@ npm test
 - [x] Harga Normal (Rp180.000 / Rp225.000) tampil sebagai harga utama tiap kategori
 - [x] Harga Early Bird tampil dicoret (`line-through`) + badge "Habis" di kedua kartu
 - [x] Toggle "Tangan Panjang" menambah Rp10.000 ke harga Normal & Early Bird
-- [x] Link CTA membawa query `kategori` & `lengan` yang benar, dan berubah saat toggle
+- [x] Link CTA membawa query `kategori` yang benar (opsi lengan panjang sudah dihapus)
 - [x] Tombol pendaftaran aktif (bukan "Pendaftaran Ditutup") selama `isRegistrationClosed = false`
 
 ### `src/components/payment/PaymentDetail.test.jsx`
 - [x] Total transfer 5K tanpa tangan panjang = **Rp180.000** (harga Normal, bukan Rp165.000 Early Bird)
 - [x] Total transfer 10K + tangan panjang = **Rp235.000** (225.000 + 10.000)
-- [x] Halaman `/payment` membuka gate `rfn_reg_unlocked` di `localStorage` dengan kategori & lengan yang benar
+- [x] Halaman `/payment` membuka gate `rfn_reg_unlocked` di `localStorage` dengan kategori yang benar
 - [x] Kategori tidak dikenal di URL fallback ke 5K
 
 ### `src/components/contact/Contact.test.jsx`
 - [x] Form pendataan diri terkunci jika `localStorage` belum di-set (belum buka halaman pembayaran)
-- [x] Form iframe + tombol WA Meli terbuka saat `rfn_reg_unlocked` sudah `true`, dengan teks pesan WA menyesuaikan kategori & lengan
+- [x] Form iframe + tombol WA Meli terbuka saat `rfn_reg_unlocked` sudah `true`, dengan teks pesan WA menyesuaikan kategori
 - [x] Data `localStorage` yang rusak (bukan JSON valid) tidak membuat app crash — tetap dianggap terkunci
 
 ### `src/components/header/Header.test.jsx`
@@ -71,7 +71,7 @@ Jalankan `npm run dev`, buka `http://localhost:5173`, lalu cek satu per satu:
 - [ ] Klik "Daftar Sekarang" → masuk ke `/payment` → total yang tertera sama dengan harga Normal (bukan Early Bird)
 - [ ] Scroll ke Contact sebelum buka `/payment` → form terkunci dengan pesan yang jelas
 - [ ] Setelah buka `/payment`, kembali ke Contact → form iframe & tombol WA Meli muncul
-- [ ] Tombol WA membuka `wa.me` dengan pesan yang sudah terisi kategori & lengan yang benar
+- [ ] Tombol WA membuka `wa.me` dengan pesan yang sudah terisi kategori yang benar
 - [ ] Dark/Light mode toggle bekerja & tersimpan setelah refresh halaman
 - [ ] Tidak ada error di browser console (`F12` → Console)
 - [ ] Responsive: cek tampilan di lebar mobile (< 480px) — khususnya kartu harga & navbar hamburger

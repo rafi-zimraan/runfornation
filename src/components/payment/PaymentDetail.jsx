@@ -14,12 +14,10 @@ const REG_UNLOCK_KEY = "rfn_reg_unlocked";
 const PaymentDetail = () => {
   const [params] = useSearchParams();
   const kategori  = params.get("kategori") || "5K";
-  const isLong    = params.get("lengan") === "panjang";
   const pkg       = PRICES[kategori] ?? PRICES["5K"];
   const tipeRace  = kategori === "10K" ? "Fun Race" : "Fun Run";
   const raceColor = kategori === "10K" ? "#D42020" : "#1B3CC0";
-  const addon    = isLong ? 10000 : 0;
-  const normalFinal = pkg.normal + addon;
+  const normalFinal = pkg.normal;
 
   // Begitu user sampai di halaman ini (sudah lihat info pembayaran),
   // buka akses form data diri di section Contact. Konfirmasi WhatsApp
@@ -30,11 +28,10 @@ const PaymentDetail = () => {
       JSON.stringify({
         unlocked: true,
         kategori,
-        lengan: isLong ? "panjang" : "pendek",
         unlockedAt: new Date().toISOString(),
       })
     );
-  }, [kategori, isLong]);
+  }, [kategori]);
 
   return (
     <div
@@ -139,12 +136,6 @@ const PaymentDetail = () => {
             <span style={{ fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.7)" }}>{tipeRace} {kategori}</span>
             <span style={{ fontSize: "var(--fs-sm)", fontWeight: 600, color: "#fff" }}>Rp{fmt(pkg.normal)}</span>
           </div>
-          {isLong && (
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.5rem" }}>
-              <span style={{ fontSize: "var(--fs-sm)", color: "rgba(255,255,255,0.7)" }}>Jersey Lengan Panjang</span>
-              <span style={{ fontSize: "var(--fs-sm)", fontWeight: 600, color: "var(--gold)" }}>+Rp10.000</span>
-            </div>
-          )}
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", marginTop: "0.75rem", paddingTop: "0.75rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <span style={{ fontSize: "var(--fs-sm)", fontWeight: 700, color: "#fff" }}>Total (Harga Normal)</span>
             <span style={{ fontSize: "var(--fs-xl)", fontWeight: 900, color: "var(--gold)" }}>Rp{fmt(normalFinal)}</span>

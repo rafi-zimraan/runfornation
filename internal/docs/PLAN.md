@@ -67,7 +67,7 @@ statis. Sudah diverifikasi tampil benar di browser.
 2. **Harga Early Bird resmi habis:**
    - `Payments.jsx`: baris harga Early Bird sekarang dicoret (`text-decoration: line-through`) dengan badge merah "Habis". Harga **Normal** diperbesar (`--fs-3xl`, bold) dan jadi harga utama yang ditonjolkan.
    - Banner promosi "Pendaftaran Resmi Dibuka!" diubah teksnya agar tidak lagi menyebut Early Bird masih tersedia.
-   - **`PaymentDetail.jsx` (penting):** total yang harus ditransfer sebelumnya dihitung dari `pkg.earlyBird`. Ini sudah diperbaiki menjadi `pkg.normal + addon` — karena Early Bird habis, nominal transfer yang ditampilkan ke user sekarang benar (harga Normal), bukan salah kurang bayar.
+   - **`PaymentDetail.jsx` (penting):** total yang harus ditransfer sebelumnya dihitung dari `pkg.earlyBird`. Ini sudah diperbaiki menjadi `pkg.normal` — karena Early Bird habis, nominal transfer yang ditampilkan ke user sekarang benar (harga Normal), bukan salah kurang bayar.
 
 ---
 

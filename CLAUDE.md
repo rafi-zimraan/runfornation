@@ -87,7 +87,7 @@ Didefinisikan di `src/App.jsx` menggunakan `createBrowserRouter`:
 | Path | Komponen | Keterangan |
 |---|---|---|
 | `/` | `Home + About + Size + Payments + Contact` (dibungkus `Header` + `Footer`) | Halaman utama (one-page) |
-| `/payment` | `PaymentDetail` | Halaman detail pembayaran & konfirmasi WA |
+| `/payment` | `PaymentDetail` | Halaman detail pembayaran & konfirmasi WA (query: `?kategori=5K\|10K`) |
 
 ---
 
@@ -105,7 +105,7 @@ Harga didefinisikan **terpisah di dua file** (tidak ada shared source) — **sel
 - `src/components/payment/Payments.jsx` → `const PACKAGES = [...]` (field `earlyBird` & `normal` per kategori)
 - `src/components/payment/PaymentDetail.jsx` → `const PRICES = {...}`
 
-Status saat ini: **Early Bird sudah habis**. Di `Payments.jsx`, harga Early Bird ditampilkan dicoret dengan badge "Habis"; harga **Normal** yang ditonjolkan (font lebih besar). Di `PaymentDetail.jsx`, total yang harus ditransfer dihitung dari `pkg.normal + addon` (bukan `earlyBird` lagi) — ini krusial karena itu adalah nominal yang dilihat & ditransfer user.
+Status saat ini: **Early Bird sudah habis**. Di `Payments.jsx`, harga Early Bird ditampilkan dicoret dengan badge "Habis"; harga **Normal** yang ditonjolkan (font lebih besar). Di `PaymentDetail.jsx`, total yang harus ditransfer dihitung dari `pkg.normal` (bukan `earlyBird` lagi) — ini krusial karena itu adalah nominal yang dilihat & ditransfer user.
 
 Jika Early Bird dibuka lagi di masa depan, kembalikan logic di `PaymentDetail.jsx` untuk menghitung dari `earlyBird` dan sesuaikan tampilan `Payments.jsx`.
 

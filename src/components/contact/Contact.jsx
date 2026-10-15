@@ -27,7 +27,6 @@ const Contact = () => {
   const isUnlocked = !!gateInfo;
 
   const kategori  = gateInfo?.kategori || "5K";
-  const isLong    = gateInfo?.lengan === "panjang";
   const tipeRace  = kategori === "10K" ? "Fun Race" : "Fun Run";
   const raceColor = kategori === "10K" ? "#D42020" : "#1B3CC0";
 
@@ -153,7 +152,7 @@ const Contact = () => {
 
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
                 {WA_CONTACTS.map(({ name, phone, desc }) => {
-                  const text = `Halo kak ${name}, saya sudah mengisi form pendaftaran Run For Nation 2026 kategori ${tipeRace} ${kategori}${isLong ? " + jersey tangan panjang" : ""} dan sudah transfer. Saya lampirkan bukti pembayaran.`;
+                  const text = `Halo kak ${name}, saya sudah mengisi form pendaftaran Run For Nation 2026 kategori ${tipeRace} ${kategori} dan sudah transfer. Saya lampirkan bukti pembayaran.`;
                   return (
                     <a
                       key={name}

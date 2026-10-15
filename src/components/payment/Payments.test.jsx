@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { MemoryRouter } from "react-router-dom";
 import Payments from "./Payments";
 
@@ -30,37 +29,19 @@ describe("Payments — harga & Early Bird sold out", () => {
     expect(earlyBird10K).toHaveStyle({ textDecoration: "line-through" });
   });
 
-  it("menambahkan Rp10.000 ke harga Normal & Early Bird saat toggle tangan panjang aktif", async () => {
-    const user = userEvent.setup();
+  it("tidak lagi menampilkan opsi tambahan lengan panjang", () => {
     renderPayments();
-
-    const switches = screen.getAllByRole("switch");
-    await user.click(switches[0]); // kartu 5K
-
-    expect(screen.getByText("Rp190.000")).toBeInTheDocument(); // 180.000 + 10.000
-    expect(screen.getByText("Rp175.000")).toBeInTheDocument(); // 165.000 + 10.000 (dicoret)
+    expect(screen.queryAllByRole("switch")).toHaveLength(0);
+    expect(screen.queryByText(/tambahan lengan panjang/i)).not.toBeInTheDocument();
+    expect(screen.queryByText("+Rp10.000")).not.toBeInTheDocument();
   });
 
-  it("link CTA membawa query kategori & lengan yang benar", async () => {
-    const user = userEvent.setup();
+  it("link CTA hanya membawa query kategori, tanpa parameter lengan", () => {
     renderPayments();
 
     const ctaLinks = screen.getAllByRole("link", { name: /daftar sekarang/i });
-    expect(ctaLinks[0]).toHaveAttribute(
-      "href",
-      "/payment?kategori=5K&lengan=pendek"
-    );
-
-    const switches = screen.getAllByRole("switch");
-    await user.click(switches[0]);
-
-    const ctaLinksAfter = screen.getAllByRole("link", {
-      name: /daftar sekarang/i,
-    });
-    expect(ctaLinksAfter[0]).toHaveAttribute(
-      "href",
-      "/payment?kategori=5K&lengan=panjang"
-    );
+    expect(ctaLinks[0]).toHaveAttribute("href", "/payment?kategori=5K");
+    expect(ctaLinks[1]).toHaveAttribute("href", "/payment?kategori=10K");
   });
 
   it("tombol pendaftaran aktif (bukan Pendaftaran Ditutup) selama isRegistrationClosed = false", () => {

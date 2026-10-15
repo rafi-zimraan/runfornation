@@ -116,7 +116,7 @@ baru. Terakhir diperbarui: 2026-07-11.
 Payments (pilih paket)
    │  klik "Daftar Sekarang"
    ▼
-/payment?kategori=X&lengan=Y
+/payment?kategori=X
    │  useEffect → localStorage.rfn_reg_unlocked = true
    ▼
 Contact (kembali ke "/", scroll ke #contact)

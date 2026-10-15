@@ -29,13 +29,13 @@ Untuk konteks kenapa (why), lihat `prd.md` / `brd.md`. Untuk detail keamanan, li
 
 ## FR-3: Gate Form Pendataan Diri
 
-- **Input:** kunjungan ke `/payment?kategori=<5K|10K>&lengan=<pendek|panjang>`.
+- **Input:** kunjungan ke `/payment?kategori=<5K|10K>`.
 - **Proses:**
   1. `PaymentDetail.jsx` saat mount menulis ke `localStorage["rfn_reg_unlocked"]`:
-     `{ unlocked: true, kategori, lengan, unlockedAt: ISOString }`
+     `{ unlocked: true, kategori, unlockedAt: ISOString }`
   2. `Contact.jsx` saat mount membaca key yang sama via `readGateInfo()` (lazy `useState` initializer). Jika parse gagal atau `unlocked !== true`, dianggap terkunci — **tidak pernah throw error**.
 - **Output:**
-  - Jika unlocked: tampilkan iframe Google Form + blok konfirmasi WhatsApp (nomor Meli), teks pesan WA pre-filled sesuai kategori & lengan.
+  - Jika unlocked: tampilkan iframe Google Form + blok konfirmasi WhatsApp (nomor Meli), teks pesan WA pre-filled sesuai kategori.
   - Jika terkunci: tampilkan kartu "Form Pendataan Diri Terkunci" + tombol ke section Pembayaran.
 - **Edge case tertangani:** data localStorage corrupt/bukan JSON → fallback ke status terkunci (tidak crash).
 - **Test coverage:** `Contact.test.jsx`, `PaymentDetail.test.jsx` (bagian localStorage write).
