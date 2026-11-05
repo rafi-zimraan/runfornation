@@ -19,8 +19,18 @@ npm test
 - [x] Harga Normal (Rp180.000 / Rp225.000) tampil sebagai harga utama tiap kategori
 - [x] Harga Early Bird tampil dicoret (`line-through`) + badge "Habis" di kedua kartu
 - [x] Toggle "Tangan Panjang" menambah Rp10.000 ke harga Normal & Early Bird
-- [x] Link CTA membawa query `kategori` yang benar (opsi lengan panjang sudah dihapus)
-- [x] Tombol pendaftaran aktif (bukan "Pendaftaran Ditutup") selama `isRegistrationClosed = false`
+- [x] Link CTA membawa query `kategori` yang benar saat pendaftaran dibuka (opsi lengan panjang sudah dihapus)
+- [x] Saat `IS_REGISTRATION_CLOSED = true`: CTA jadi 2 tombol disabled "Pendaftaran Ditutup", tidak ada link `/payment` tersisa
+- [x] Saat ditutup: banner ucapan terima kasih + tombol WhatsApp panitia tampil
+- [x] Saat `IS_REGISTRATION_CLOSED = false`: banner penutupan tidak tampil & CTA kembali aktif
+
+### `src/components/registration/RegistrationClosedLayer.test.jsx`
+- [x] Layer + ucapan terima kasih tampil saat pendaftaran ditutup
+- [x] Tidak tampil sama sekali saat pendaftaran dibuka
+- [x] Tombol "Mengerti" menutup layer & menyimpan `rfn_closed_notice_dismissed` di `localStorage`
+- [x] Tidak tampil lagi jika sudah pernah ditutup
+- [x] Scroll body dikembalikan setelah layer ditutup
+- [x] Tautan WhatsApp panitia benar
 
 ### `src/components/payment/PaymentDetail.test.jsx`
 - [x] Total transfer 5K tanpa tangan panjang = **Rp180.000** (harga Normal, bukan Rp165.000 Early Bird)
@@ -32,6 +42,9 @@ npm test
 - [x] Form pendataan diri terkunci jika `localStorage` belum di-set (belum buka halaman pembayaran)
 - [x] Form iframe + tombol WA Meli terbuka saat `rfn_reg_unlocked` sudah `true`, dengan teks pesan WA menyesuaikan kategori
 - [x] Data `localStorage` yang rusak (bukan JSON valid) tidak membuat app crash — tetap dianggap terkunci
+- [x] Saat pendaftaran ditutup: pendaftar baru dapat kartu "Pendaftaran Ditutup" + ucapan terima kasih (bukan kartu "Form Terkunci")
+- [x] Saat pendaftaran ditutup: peserta yang sudah `rfn_reg_unlocked` **tetap** bisa membuka form pendataan diri
+- [x] Saat pendaftaran ditutup: pendaftar baru diarahkan ke WhatsApp panitia
 
 ### `src/components/header/Header.test.jsx`
 - [x] Semua link navigasi (Home, Ketentuan, Size, Pembayaran, Daftar) merender href yang benar

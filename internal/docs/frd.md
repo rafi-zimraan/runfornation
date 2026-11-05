@@ -10,10 +10,14 @@ Untuk konteks kenapa (why), lihat `prd.md` / `brd.md`. Untuk detail keamanan, li
 
 ## FR-1: Toggle Buka/Tutup Pendaftaran
 
-- **Input:** konstanta `isRegistrationClosed` di `Payments.jsx` (baris 5), diubah manual oleh developer.
-- **Proses:** jika `true`, tombol CTA di tiap kartu paket diganti tombol disabled "Pendaftaran Ditutup"; toggle tangan panjang juga dinonaktifkan (cursor `not-allowed`).
-- **Output:** UI berubah total tanpa perlu mengubah komponen lain.
-- **Status saat ini:** `false` (pendaftaran dibuka).
+- **Input:** konstanta `IS_REGISTRATION_CLOSED` di `src/config/registration.js`, diubah manual oleh developer. (Sebelumnya konstanta lokal di `Payments.jsx`; dipindah ke config karena sekarang dibaca 3 komponen.)
+- **Proses:** jika `true`:
+  1. `Payments.jsx` — CTA tiap kartu paket diganti tombol disabled "Pendaftaran Ditutup", dan muncul banner penutupan + ucapan terima kasih di atas kartu. Harga tetap ditampilkan sebagai arsip informasi.
+  2. `Contact.jsx` — pendaftar baru (belum punya `rfn_reg_unlocked`) mendapat kartu "Pendaftaran Ditutup" + ucapan terima kasih, bukan kartu "Form Terkunci". Peserta yang sudah unlocked **tetap** mendapat form pendataan diri.
+  3. `RegistrationClosedLayer.jsx` — layer/overlay sitewide muncul sekali per browser (dismissal di `localStorage` key `rfn_closed_notice_dismissed`, bisa ditutup via tombol, klik backdrop, atau Esc).
+- **Output:** UI berubah di 3 titik dari satu konstanta.
+- **Status saat ini:** `true` (pendaftaran DITUTUP).
+- **Catatan:** route `/payment` sengaja tidak diblokir — peserta yang sudah transfer tetap bisa membuka link lama untuk menyelesaikan pendataan diri. Tidak ada link menuju `/payment` dari UI saat status tutup.
 
 ## FR-2: Kalkulasi & Tampilan Harga
 

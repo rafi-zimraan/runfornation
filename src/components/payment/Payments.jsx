@@ -1,8 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
+import {
+  IS_REGISTRATION_CLOSED,
+  REGISTRATION_CLOSED_TITLE,
+  REGISTRATION_THANKS,
+  REGISTRATION_CLOSED_NOTE,
+  REGISTRATION_WA,
+  REGISTRATION_WA_URL,
+} from "../../config/registration";
 
-const isRegistrationClosed = false; // ubah ke true untuk menutup pendaftaran
+// Status pendaftaran diatur terpusat di src/config/registration.js
+const isRegistrationClosed = IS_REGISTRATION_CLOSED;
 
 const INCLUDES = [
   "Jersey Event",
@@ -370,6 +379,137 @@ const PackageCard = ({ pkg, index }) => {
   );
 };
 
+/* ── Banner: pendaftaran ditutup + ucapan terima kasih ── */
+const ClosedBanner = () => (
+  <div
+    data-aos="fade-up"
+    data-aos-duration="600"
+    style={{
+      background:
+        "linear-gradient(135deg, var(--blue-950) 0%, var(--blue-900) 70%, var(--blue-800) 100%)",
+      border: "1.5px solid rgba(245,204,0,0.25)",
+      borderRadius: "var(--r-xl)",
+      padding: "1.75rem 1.5rem",
+      marginBottom: "2rem",
+      textAlign: "center",
+      position: "relative",
+      overflow: "hidden",
+      boxShadow: "var(--shadow-md)",
+    }}
+  >
+    <div
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        right: 0,
+        height: "4px",
+        background: "linear-gradient(90deg, var(--gold), #D42020 55%, #1B3CC0)",
+      }}
+    />
+
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.4rem",
+        background: "rgba(212,32,32,0.18)",
+        border: "1px solid rgba(212,32,32,0.45)",
+        color: "#ff8787",
+        fontSize: "var(--fs-xs)",
+        fontWeight: 800,
+        textTransform: "uppercase",
+        letterSpacing: "0.07em",
+        padding: "0.3rem 0.875rem",
+        borderRadius: "var(--r-full)",
+        marginBottom: "0.875rem",
+      }}
+    >
+      <i className="uil uil-lock-alt"></i>
+      {REGISTRATION_CLOSED_TITLE}
+    </span>
+
+    <h3
+      style={{
+        fontSize: "var(--fs-xl)",
+        fontWeight: 800,
+        color: "#fff",
+        margin: "0 0 0.625rem",
+      }}
+    >
+      🙏 Terima Kasih untuk Semua yang Telah Mendaftar
+    </h3>
+
+    <p
+      style={{
+        fontSize: "var(--fs-sm)",
+        color: "rgba(255,255,255,0.75)",
+        lineHeight: 1.75,
+        maxWidth: "540px",
+        margin: "0 auto 1.25rem",
+      }}
+    >
+      {REGISTRATION_THANKS}
+    </p>
+
+    <div
+      style={{
+        background: "rgba(245,204,0,0.08)",
+        border: "1px solid rgba(245,204,0,0.2)",
+        borderRadius: "var(--r-md)",
+        padding: "0.8rem 1rem",
+        maxWidth: "540px",
+        margin: "0 auto 1.25rem",
+        display: "flex",
+        gap: "0.5rem",
+        alignItems: "flex-start",
+        textAlign: "left",
+      }}
+    >
+      <i
+        className="uil uil-info-circle"
+        style={{
+          color: "var(--gold)",
+          fontSize: "1rem",
+          flexShrink: 0,
+          marginTop: "0.1rem",
+        }}
+      ></i>
+      <p
+        style={{
+          fontSize: "var(--fs-xs)",
+          color: "rgba(255,255,255,0.78)",
+          lineHeight: 1.65,
+          margin: 0,
+        }}
+      >
+        {REGISTRATION_CLOSED_NOTE}
+      </p>
+    </div>
+
+    <a
+      href={REGISTRATION_WA_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.45rem",
+        padding: "0.8rem 1.5rem",
+        borderRadius: "var(--r-md)",
+        background: "rgba(37,211,102,0.14)",
+        border: "1px solid rgba(37,211,102,0.4)",
+        color: "#4ade80",
+        fontSize: "var(--fs-sm)",
+        fontWeight: 700,
+      }}
+    >
+      <i className="uil uil-whatsapp"></i>
+      Hubungi Panitia ({REGISTRATION_WA.name})
+    </a>
+  </div>
+);
+
 /* ── Main Section ── */
 const Payments = () => (
   <section className="section" id="payment" style={{ background: "var(--bg)" }}>
@@ -382,9 +522,13 @@ const Payments = () => (
         </span>
         <h2 className="section__title">Paket Pendaftaran</h2>
         <p className="section__subtitle" style={{ marginBottom: 0 }}>
-          Pilih kategori &amp; tambahkan opsi jersey sesuai kebutuhan Anda.
+          {isRegistrationClosed
+            ? "Pendaftaran Run For Nation 2026 sudah ditutup. Daftar harga di bawah ditampilkan sebagai arsip informasi."
+            : "Pilih kategori & tambahkan opsi jersey sesuai kebutuhan Anda."}
         </p>
       </div>
+
+      {isRegistrationClosed && <ClosedBanner />}
 
       {/* Category info banner */}
       <div

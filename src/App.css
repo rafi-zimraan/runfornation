@@ -932,18 +932,25 @@ button {
 
   .nav__menu {
     position: fixed;
-    top: -120%;
+    /* Sembunyikan pakai transform, BUKAN `top: -120%`. Saat user scroll,
+       `.header` mendapat class .scroll-header yang punya backdrop-filter —
+       properti itu membuat header jadi containing block untuk elemen
+       position:fixed di dalamnya. Akibatnya -120% dihitung dari tinggi header
+       (~64px), bukan tinggi layar, sehingga menu nongol sendiri menutupi
+       konten di HP. transform selalu relatif ke elemen itu sendiri. */
+    top: 0;
     left: 0; right: 0;
+    transform: translateY(-120%);
     background: rgba(10, 21, 64, 0.97);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: calc(var(--header-h) + 1.5rem) 1.5rem 1.5rem;
     border-radius: 0 0 20px 20px;
     box-shadow: 0 4px 40px rgba(0,0,0,0.4);
-    transition: top var(--t-base) var(--ease);
+    transition: transform var(--t-base) var(--ease);
     z-index: 50;
   }
-  .nav__menu.show-menu { top: 0; }
+  .nav__menu.show-menu { transform: translateY(0); }
 
   .nav__list {
     display: grid;

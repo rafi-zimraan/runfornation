@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../App.css";
+import {
+  IS_REGISTRATION_CLOSED,
+  REGISTRATION_CLOSED_TITLE,
+  REGISTRATION_THANKS,
+  REGISTRATION_CLOSED_NOTE,
+  REGISTRATION_WA,
+  REGISTRATION_WA_URL,
+} from "../../config/registration";
 
 const FORM_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSdcAgdrKgmhseK9ULfD5apMpOa2M1nm-vWrkUB9SuLcx61taw/viewform?embedded=true";
@@ -44,6 +52,8 @@ const Contact = () => {
           <p className="section__subtitle" style={{ marginBottom: 0 }}>
             {isUnlocked
               ? "Isi data dengan lengkap dan benar, lalu lampirkan bukti transfer Anda pada kolom yang tersedia."
+              : IS_REGISTRATION_CLOSED
+              ? "Pendaftaran Run For Nation 2026 sudah ditutup. Terima kasih atas antusiasme Anda!"
               : "Selesaikan pembayaran terlebih dahulu untuk membuka form ini."}
           </p>
         </div>
@@ -199,6 +209,80 @@ const Contact = () => {
               </div>
             </div>
           </>
+        ) : IS_REGISTRATION_CLOSED ? (
+          /* Pendaftaran ditutup — tidak menerima pendaftar baru */
+          <div
+            data-aos="fade-up"
+            data-aos-duration="800"
+            className="contact__gate-card"
+            style={{
+              background: "var(--surface)",
+              border: "1.5px solid var(--border)",
+              borderRadius: "var(--r-xl)",
+              boxShadow: "var(--shadow-sm)",
+              maxWidth: "800px",
+              margin: "0 auto",
+              textAlign: "center",
+            }}
+          >
+            <div
+              style={{
+                width: "4rem", height: "4rem",
+                borderRadius: "50%",
+                background: "rgba(245,204,0,0.14)",
+                color: "var(--gold-dark)",
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontSize: "1.75rem",
+                margin: "0 auto 1.25rem",
+              }}
+            >
+              <i className="uil uil-lock-alt"></i>
+            </div>
+
+            <h3 style={{ fontSize: "var(--fs-xl)", fontWeight: 700, color: "var(--text)", marginBottom: "0.625rem" }}>
+              {REGISTRATION_CLOSED_TITLE}
+            </h3>
+
+            <p style={{ fontSize: "var(--fs-sm)", color: "var(--text-muted)", lineHeight: 1.75, maxWidth: "520px", margin: "0 auto 1.5rem" }}>
+              🙏 {REGISTRATION_THANKS}
+            </p>
+
+            <div
+              style={{
+                padding: "0.875rem 1.125rem",
+                background: "rgba(245,204,0,0.08)",
+                border: "1px solid rgba(245,204,0,0.25)",
+                borderRadius: "var(--r-md)",
+                maxWidth: "520px",
+                margin: "0 auto 1.5rem",
+                display: "flex",
+                gap: "0.5rem",
+                fontSize: "var(--fs-xs)",
+                color: "var(--text-muted)",
+                fontWeight: 500,
+                textAlign: "left",
+              }}
+            >
+              <i className="uil uil-info-circle" style={{ fontSize: "1rem", flexShrink: 0, marginTop: "0.1rem", color: "var(--gold-dark)" }}></i>
+              {REGISTRATION_CLOSED_NOTE}
+            </div>
+
+            <a
+              href={REGISTRATION_WA_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "0.5rem",
+                padding: "0.875rem 1.75rem",
+                borderRadius: "var(--r-md)",
+                background: "#25D366", color: "#fff",
+                fontSize: "var(--fs-sm)", fontWeight: 700,
+              }}
+            >
+              <i className="uil uil-whatsapp"></i>
+              Hubungi Panitia ({REGISTRATION_WA.name})
+            </a>
+          </div>
         ) : (
           /* Gate — form terkunci sampai user memilih paket & melihat pembayaran */
           <div

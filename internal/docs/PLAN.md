@@ -7,7 +7,7 @@ dan rencana ke depan untuk website **Run For Nation: Spirit of Culture 2026**.
 > (requirements), `security.md` (**baca dulu — ada insiden keamanan data aktif**), `design.md`,
 > `wireframe.md`, `techstack.md`, `roadmap.md`, `TESTING_CHECKLIST.md`.
 
-Terakhir diperbarui: 2026-07-11.
+Terakhir diperbarui: 2026-11-05.
 
 ---
 
@@ -15,7 +15,7 @@ Terakhir diperbarui: 2026-07-11.
 
 | Area | Status |
 |---|---|
-| Pendaftaran | **Dibuka** (`isRegistrationClosed = false` di `Payments.jsx`) |
+| Pendaftaran | **DITUTUP** (`IS_REGISTRATION_CLOSED = true` di `src/config/registration.js`) — banner + layer ucapan terima kasih aktif |
 | Early Bird | **Habis** — harga yang berlaku sekarang adalah harga **Normal** |
 | Form pendataan diri | Google Form (embed iframe), terkunci sampai user melihat halaman `/payment` |
 | Konfirmasi pembayaran | Manual via WhatsApp (Meli) setelah isi form |
@@ -107,7 +107,9 @@ statis. Sudah diverifikasi tampil benar di browser.
 
 ## 6. Referensi Cepat
 
-- Toggle buka/tutup pendaftaran: `src/components/payment/Payments.jsx` (`const isRegistrationClosed = ...`)
+- Toggle buka/tutup pendaftaran: `src/config/registration.js` (`IS_REGISTRATION_CLOSED`) — dibaca oleh `Payments.jsx`, `Contact.jsx`, dan `registration/RegistrationClosedLayer.jsx`
+- Teks pengumuman penutupan & ucapan terima kasih: `src/config/registration.js` (`REGISTRATION_THANKS`, `REGISTRATION_CLOSED_NOTE`)
+- Dismissal layer penutupan: `localStorage` key `rfn_closed_notice_dismissed`
 - Harga paket: `src/components/payment/Payments.jsx` (`PACKAGES`) dan `src/components/payment/PaymentDetail.jsx` (`PRICES`) — **harus selalu diubah bersamaan**, keduanya sumber harga yang terpisah (tidak shared/import satu sama lain).
 - Gate form pendataan diri: `localStorage` key `rfn_reg_unlocked`, ditulis oleh `PaymentDetail.jsx`, dibaca oleh `Contact.jsx`.
 - Facebook Pixel ID: `src/App.jsx` (`fbq("init", "...")`)

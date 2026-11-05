@@ -94,11 +94,24 @@ Didefinisikan di `src/App.jsx` menggunakan `createBrowserRouter`:
 ## Fitur Penting & State Kritis
 
 ### Toggle Buka/Tutup Pendaftaran
-Di `src/components/payment/Payments.jsx` baris 5:
+Satu sumber kebenaran di `src/config/registration.js`:
 ```js
-const isRegistrationClosed = false; // ubah ke true untuk menutup pendaftaran
+export const IS_REGISTRATION_CLOSED = true; // ubah ke false untuk membuka pendaftaran
 ```
-Ubah nilai ini untuk mengaktifkan/menonaktifkan tombol pendaftaran dan banner "Pendaftaran Ditutup".
+**Status saat ini: pendaftaran DITUTUP.** Cukup ubah satu konstanta ini — tiga tempat ikut berubah:
+
+| Konsumen | Saat `true` |
+|---|---|
+| `payment/Payments.jsx` | CTA jadi tombol disabled "Pendaftaran Ditutup" + banner ucapan terima kasih di atas kartu paket (harga tetap tampil sebagai arsip) |
+| `contact/Contact.jsx` | Pendaftar baru dapat kartu "Pendaftaran Ditutup" + ucapan terima kasih; **peserta yang sudah punya `rfn_reg_unlocked` tetap bisa mengisi form** (supaya yang sudah transfer tidak terblokir) |
+| `registration/RegistrationClosedLayer.jsx` | Layer/overlay sitewide (dirender dari `App.jsx`), muncul sekali per browser — dismissal disimpan di `localStorage` key `rfn_closed_notice_dismissed` |
+
+Teks pengumuman & ucapan terima kasih juga ada di `src/config/registration.js`
+(`REGISTRATION_CLOSED_TITLE`, `REGISTRATION_THANKS`, `REGISTRATION_CLOSED_NOTE`) — ubah di sana,
+jangan di komponen.
+
+Catatan: halaman `/payment` sengaja **tetap bisa diakses via URL langsung** agar peserta yang sudah
+terlanjur transfer bisa menyelesaikan pendataan diri. Tidak ada lagi link menuju ke sana dari UI.
 
 ### Harga Paket & Status Early Bird
 Harga didefinisikan **terpisah di dua file** (tidak ada shared source) — **selalu ubah keduanya bersamaan**:

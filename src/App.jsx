@@ -15,10 +15,17 @@ import PaymentDetail from "./components/payment/PaymentDetail";
 import ScrollToHash from "./components/scrollToHash/ScrollToHash";
 import Size from "./components/size/Size";
 import BuyerFeedToast from "./components/notifications/BuyerFeedToast";
+import RegistrationClosedLayer from "./components/registration/RegistrationClosedLayer";
+import { IS_REGISTRATION_CLOSED } from "./config/registration";
 
 const App = () => {
   useEffect(() => {
-    Aos.init();
+    // AOS dimatikan di layar kecil (<992px, breakpoint yang sama dengan CSS):
+    // animasi fade-left/right memberi transform translateX(+100px) + opacity 0
+    // sebagai state awal. Di HP trigger-nya sering tidak pernah jalan, sehingga
+    // elemen tetap tak terlihat SEKALIGUS melebarkan dokumen ~100px — bikin
+    // konten & elemen position:fixed terpotong di sisi kanan.
+    Aos.init({ disable: () => window.innerWidth < 992 });
 
     const script = document.createElement("script");
     script.innerHTML = `
@@ -70,7 +77,10 @@ const App = () => {
           <Outlet />
           <Footer />
           <ScrollUp />
-          <BuyerFeedToast />
+          {/* Toast "telah membeli tiket" hanya relevan selama pendaftaran dibuka —
+              saat ditutup pesannya bertentangan dengan banner penutupan. */}
+          {!IS_REGISTRATION_CLOSED && <BuyerFeedToast />}
+          <RegistrationClosedLayer />
         </>
       ),
       errorElement: (
