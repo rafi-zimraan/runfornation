@@ -44,7 +44,10 @@ punya test sendiri.
 ## Hal yang terlihat salah tapi disengaja
 
 - Halaman `/payment` tetap bisa dibuka via URL langsung walau pendaftaran ditutup (untuk peserta
-  yang sudah terlanjur transfer).
+  yang sudah terlanjur transfer). **Catatan 20 Nov 2026:** di server live path ini justru 404
+  karena tidak ada SPA fallback. Lihat `KNOWLEDGE.md` §9 sebelum mengubahnya.
+- `public/.htaccess` bukan sisa konfigurasi. Isinya short link `/RFNVirtual` ke Google Form
+  Virtual Run. Jangan dihapus, dan jangan pakai TinyURL sebagai gantinya.
 - Peserta yang punya `rfn_reg_unlocked` di localStorage tetap bisa mengisi form walau pendaftaran
   ditutup.
 - `public/sizechart-10k-oranye.jpg` tidak dipakai website — hanya agar punya URL publik untuk

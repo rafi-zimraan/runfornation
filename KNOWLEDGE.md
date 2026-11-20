@@ -68,7 +68,10 @@ Semuanya hidup di Google Form; repo ini hanya menumpang untuk hosting gambar.
 - **Jersey:** oranye (khusus 10K — keputusan direktur, bukan hijau), ukuran S/M/L/XL
   (S 49/67 · M 50/69 · L 52/70 · XL 54/73, toleransi 2 cm).
 - **Pembayaran:** rekening yang sama dengan lini A (BSI 2024232215 a.n. Yahya Organizer),
-  bukti transfer diupload di dalam form.
+  bukti transfer diupload di dalam form. **Akibatnya peserta wajib login akun Google** sebelum
+  bisa membuka form (aturan Google untuk form yang punya pertanyaan Upload File). Ini langkah
+  paling berat bagi yang membuka link dari WhatsApp. Usulan menghapus upload dan memindah bukti
+  transfer ke WA admin **menunggu keputusan Bang Heri** (20 Nov 2026), lihat `MEMORY.md`.
 - **Admin:** WhatsApp **0853-9366-9366** — nomor yang sama dengan Meli.
 - **Tidak ada grup WhatsApp peserta** untuk Virtual Run (keputusan direktur, 19 Nov 2026).
   Jangan menambahkan link `bit.ly/runfornation2026` (itu grup event offline).
@@ -79,7 +82,8 @@ Semuanya hidup di Google Form; repo ini hanya menumpang untuk hosting gambar.
 
 | Keperluan | Link | Catatan |
 |---|---|---|
-| Daftar Virtual Run (**dipakai publik**) | `tinyurl.com/RFNVirtual` | Short link resmi sejak 20 Nov 2026. Huruf besar/kecil bebas. |
+| Daftar Virtual Run (pengganti TinyURL) | `runfornation.my.id/RFNVirtual` | Dibuat 20 Nov 2026 lewat `public/.htaccess`: satu pengalihan 302 langsung ke form. Huruf besar/kecil bebas. **Aktif hanya setelah `.htaccess` di-upload ke `public_html/`.** |
+| Daftar Virtual Run (lama) | `tinyurl.com/RFNVirtual` | Short link sejak 20 Nov 2026. Kena cek bot Cloudflare, jangan disebar lagi (lihat bawah). |
 | Daftar Virtual Run (asli) | `forms.gle/vA6EzR7DLqULgW4t8` | Tetap aktif. Masih tercetak di poster lama. |
 | Edit form daftar Virtual Run | `docs.google.com/forms/d/1djnVRmlhhDSODcFcvDBjv_Dv6DE5ORY9Fg9ieb9VYww/edit` | |
 | Submit hasil lari | `forms.gle/RF6rwkHvGyVS6pMw5` | Belum punya short link. |
@@ -92,6 +96,11 @@ Semuanya hidup di Google Form; repo ini hanya menumpang untuk hosting gambar.
 tidak bisa diubah atau dihapus selamanya**. Kalau suatu saat butuh link yang bisa dialihkan,
 jangan coba edit yang ini: buat baru lewat akun TinyURL/Bitly, atau pakai
 `runfornation.my.id/RFNVirtual` (file redirect di hosting).
+
+**Jebakan (20 Nov 2026): link TinyURL tanpa akun bisa kena halaman cek bot Cloudflare.** Kalau dibuka
+dari WhatsApp di iPhone, yang muncul bisa dulu halaman "Melakukan verifikasi keamanan" yang lambat atau
+macet, sebelum diteruskan ke form. Bang Heri mengeluhkannya ("berat linknya"). `forms.gle/...` langsung
+redirect ke form (302, <1 detik). Jangan pakai TinyURL anonim untuk link yang disebar ke publik.
 
 ---
 
@@ -128,6 +137,12 @@ hosting.
 
 Artinya: **"sudah saya push" ≠ "sudah live".** Jangan pernah melaporkan sebuah perubahan sebagai
 sudah tayang hanya karena CI hijau.
+
+**`.htaccess`** (sejak 20 Nov 2026) ada di `public/.htaccess` dan ikut ter-copy ke `dist/` saat
+build. Isinya pengalihan short link `/RFNVirtual` → Google Form Virtual Run. Untuk mengganti
+tujuan link, edit file itu lalu upload ulang **file itu saja** ke `public_html/`. Di File Manager
+DomaiNesia, nyalakan **Show Hidden Files** dulu: file berawalan titik tersembunyi, dan kalau di
+server sudah ada `.htaccess`, gabungkan isinya. Jangan menimpanya begitu saja.
 
 ---
 
@@ -169,3 +184,12 @@ Kategori" yang didokumentasikan — tidak berbahaya, tapi tidak dipakai widget.
   bukan data rusak.
 - **Halaman `/payment` sengaja masih bisa dibuka lewat URL langsung** walau pendaftaran ditutup,
   supaya peserta yang terlanjur transfer bisa menyelesaikan pendataan. Jangan "dirapikan".
+  **⚠️ Tapi per 20 Nov 2026, di server live `runfornation.my.id/payment` mengembalikan 404.**
+  DomaiNesia tidak punya aturan SPA fallback (semua path ke `index.html`), jadi route React
+  hanya jalan kalau user masuk dari halaman utama. Di `npm run dev` halaman itu normal.
+  Belum diperbaiki. Perbaikannya: tambahkan aturan fallback di `public/.htaccess`.
+- **Google Form yang punya pertanyaan Upload File selalu mewajibkan login Google.** Ini
+  tidak bisa dimatikan lewat setelan apa pun. Kalau form harus ringan dibuka dari WhatsApp, jangan
+  pakai pertanyaan upload. Minta file dikirim lewat WA admin.
+- **TinyURL tanpa akun bisa kena halaman cek bot Cloudflare** (lihat §4). Jangan dipakai untuk
+  link yang disebar ke publik.

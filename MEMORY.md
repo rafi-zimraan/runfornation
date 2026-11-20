@@ -10,7 +10,39 @@ Entri terbaru di atas.
 
 ---
 
+### 2026-11-20 — Ganti TinyURL dengan `runfornation.my.id/RFNVirtual`
+
+**Keputusan.** Short link pendaftaran Virtual Run pindah dari `tinyurl.com/RFNVirtual` ke
+`runfornation.my.id/RFNVirtual`. Caranya satu aturan pengalihan 302 di `public/.htaccess`, yang
+langsung mengarah ke URL Google Form tanpa singgah di forms.gle.
+
+**Alasan.** Bang Heri mengeluh di WA (13.41): "Agak lama loadingnya" dan "Berat fi linknya".
+Screenshot dari iPhone-nya menunjukkan TinyURL menahan pengunjung di halaman Cloudflare
+"Melakukan verifikasi keamanan" sebelum diteruskan. Uji `curl` mengonfirmasi: TinyURL membalas
+403 dengan halaman cek bot, sementara forms.gle langsung 302 ke form dalam <1 detik. TinyURL
+anonim tidak bisa diatur, jadi masalahnya tidak bisa diperbaiki di sisi TinyURL. Domain sendiri
+dipilih karena paling ringan (satu lompatan, tanpa halaman perantara), terlihat resmi, dan
+tujuannya bisa diganti kapan saja.
+
+**Konsekuensi.**
+- Aturan sudah diuji di Apache lokal: `/RFNVirtual`, `/rfnvirtual`, dan `/RFNVirtual/` →
+  302 ke form, sedangkan `/` tetap 200. **Belum live:** `.htaccess` harus di-upload manual ke
+  `public_html/` (per 20 Nov 2026 path itu masih 404).
+- Link TinyURL dan QR yang mengarah ke sana, termasuk QR di PDF laporan 20 Nov, tetap jalan tapi
+  lambat. Jangan disebar lagi. QR di laporan perlu dibuat ulang.
+- **Ditemukan saat mengecek:** penyebab berat yang lebih besar adalah **form-nya sendiri**.
+  Pertanyaan "Upload Bukti Pembayaran" membuat Google mewajibkan login. Setelan lain (kumpulkan
+  email, batasi 1 jawaban) sudah mati, jadi upload adalah satu-satunya penyebab.
+- **Menunggu keputusan Bang Heri:** hapus pertanyaan upload dan minta bukti transfer dikirim ke
+  WA admin 0853-9366-9366, supaya form terbuka tanpa login. Belum diubah, karena upload itu
+  dulu permintaan Bang Heri sendiri ("seperti biasanya").
+
+---
+
 ### 2026-11-20 — Short link `tinyurl.com/RFNVirtual` & NB ongkir di form Virtual Run
+
+> **Bagian short link dicabut pada hari yang sama**: TinyURL kena cek bot Cloudflare, diganti
+> `runfornation.my.id/RFNVirtual` (entri di atas). Bagian NB ongkir tetap berlaku.
 
 **Keputusan.** (1) Deskripsi form pendaftaran Virtual Run diberi baris
 `NB: Harga belum termasuk biaya pengiriman`, tepat di bawah daftar paket. (2) Link pendaftaran

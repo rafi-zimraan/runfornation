@@ -1,0 +1,7 @@
+# Short link Virtual Run Challenge 10K
+# runfornation.my.id/RFNVirtual → langsung ke Google Form pendaftaran (satu lompatan,
+# tanpa TinyURL yang kena cek bot Cloudflare, tanpa singgah di forms.gle).
+# Huruf besar/kecil bebas (NC). 302 supaya tujuannya bisa diganti kapan saja tanpa
+# nyangkut di cache browser. Lihat KNOWLEDGE.md §4.
+RewriteEngine On
+RewriteRule ^RFNVirtual/?$ https://docs.google.com/forms/d/e/1FAIpQLScxL1O_l1_kzNc9oMU1XLKJsvxzgMyObDaHu0qO5nEbSMx7fw/viewform [R=302,L,NC]

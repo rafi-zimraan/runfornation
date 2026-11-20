@@ -119,6 +119,8 @@ jangan di komponen.
 
 Catatan: halaman `/payment` sengaja **tetap bisa diakses via URL langsung** agar peserta yang sudah
 terlanjur transfer bisa menyelesaikan pendataan diri. Tidak ada lagi link menuju ke sana dari UI.
+⚠️ Per 20 Nov 2026 ini **hanya benar di dev server**. Di DomaiNesia, `/payment` mengembalikan 404
+karena tidak ada SPA fallback di `.htaccess` (lihat `KNOWLEDGE.md` §9).
 
 ### Harga Paket & Status Early Bird
 Harga didefinisikan **terpisah di dua file** (tidak ada shared source) — **selalu ubah keduanya bersamaan**:
@@ -188,6 +190,10 @@ dan untuk mendapat URL publik aset lewat `raw.githubusercontent.com`.
 1. Jalankan `npm run build`
 2. Zip folder `dist/` → jadikan `dist.zip`
 3. Upload & extract ke `public_html/` di DomaiNesia
+
+`public/.htaccess` (short link `/RFNVirtual`) ikut ter-build ke `dist/`. Untuk mengubahnya saja,
+cukup upload file itu. Di File Manager, nyalakan **Show Hidden Files** dan jangan menimpa
+`.htaccess` lain yang sudah ada di server. Detail di `KNOWLEDGE.md` §7.
 
 ---
 
