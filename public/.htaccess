@@ -5,3 +5,10 @@
 # nyangkut di cache browser. Lihat KNOWLEDGE.md §4.
 RewriteEngine On
 RewriteRule ^RFNVirtual/?$ https://docs.google.com/forms/d/e/1FAIpQLScxL1O_l1_kzNc9oMU1XLKJsvxzgMyObDaHu0qO5nEbSMx7fw/viewform [R=302,L,NC]
+
+# SPA fallback: route React yang dibuka lewat URL langsung (mis. /payment?kategori=10K)
+# dilayani index.html, biar React Router yang menangani. File & folder yang benar-benar ada
+# (assets, gambar) tetap dilayani apa adanya. Tanpa ini /payment = 404 di DomaiNesia.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]

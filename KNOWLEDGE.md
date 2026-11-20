@@ -139,7 +139,8 @@ Artinya: **"sudah saya push" ≠ "sudah live".** Jangan pernah melaporkan sebuah
 sudah tayang hanya karena CI hijau.
 
 **`.htaccess`** (sejak 20 Nov 2026) ada di `public/.htaccess` dan ikut ter-copy ke `dist/` saat
-build. Isinya pengalihan short link `/RFNVirtual` → Google Form Virtual Run. Untuk mengganti
+build. Isinya (1) pengalihan short link `/RFNVirtual` → Google Form Virtual Run, dan (2) SPA
+fallback supaya route React seperti `/payment` bisa dibuka lewat URL langsung. Untuk mengganti
 tujuan link, edit file itu lalu upload ulang **file itu saja** ke `public_html/`. Di File Manager
 DomaiNesia, nyalakan **Show Hidden Files** dulu: file berawalan titik tersembunyi, dan kalau di
 server sudah ada `.htaccess`, gabungkan isinya. Jangan menimpanya begitu saja.
@@ -187,7 +188,9 @@ Kategori" yang didokumentasikan — tidak berbahaya, tapi tidak dipakai widget.
   **⚠️ Tapi per 20 Nov 2026, di server live `runfornation.my.id/payment` mengembalikan 404.**
   DomaiNesia tidak punya aturan SPA fallback (semua path ke `index.html`), jadi route React
   hanya jalan kalau user masuk dari halaman utama. Di `npm run dev` halaman itu normal.
-  Belum diperbaiki. Perbaikannya: tambahkan aturan fallback di `public/.htaccess`.
+  **Diperbaiki 20 Nov 2026** dengan aturan SPA fallback di `public/.htaccess` (sudah diuji di
+  Apache lokal). Live setelah file itu di-upload. Kalau `.htaccess` di server hilang, `/payment`
+  kembali 404.
 - **Google Form yang punya pertanyaan Upload File selalu mewajibkan login Google.** Ini
   tidak bisa dimatikan lewat setelan apa pun. Kalau form harus ringan dibuka dari WhatsApp, jangan
   pakai pertanyaan upload. Minta file dikirim lewat WA admin.

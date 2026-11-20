@@ -28,6 +28,11 @@ tujuannya bisa diganti kapan saja.
 - Aturan sudah diuji di Apache lokal: `/RFNVirtual`, `/rfnvirtual`, dan `/RFNVirtual/` →
   302 ke form, sedangkan `/` tetap 200. **Belum live:** `.htaccess` harus di-upload manual ke
   `public_html/` (per 20 Nov 2026 path itu masih 404).
+- Di `.htaccess` yang sama sekalian ditambahkan **SPA fallback**. Ternyata `/payment`, halaman
+  yang sengaja dibiarkan terbuka lewat URL langsung, 404 di server live karena DomaiNesia tidak
+  tahu route React. Diuji di Apache lokal dengan `dist/` asli: `/payment?kategori=10K` → 200
+  `index.html`, sedangkan aset dan gambar tetap dilayani apa adanya. Digabung supaya cukup
+  sekali upload.
 - Link TinyURL dan QR yang mengarah ke sana, termasuk QR di PDF laporan 20 Nov, tetap jalan tapi
   lambat. Jangan disebar lagi. QR di laporan perlu dibuat ulang.
 - **Ditemukan saat mengecek:** penyebab berat yang lebih besar adalah **form-nya sendiri**.
