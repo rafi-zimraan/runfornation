@@ -1,8 +1,15 @@
 # CLAUDE.md — Run For Nation Website
 
 Panduan ini membantu AI agent memahami struktur, konvensi, dan konteks project ini.
+File ini fokus ke **kode**. Tiga file pendamping di root menangani sisanya:
 
-> Dokumentasi lengkap ada di `internal/docs/`:
+> **[`KNOWLEDGE.md`](KNOWLEDGE.md)** — fakta non-kode: harga, link, form, orang, hosting,
+> dan jebakan yang sudah pernah menggigit. Baca sebelum menyentuh angka, link, atau konten. ·
+> **[`MEMORY.md`](MEMORY.md)** — keputusan bertanggal + alasannya. Baca saat ada yang terlihat
+> aneh; biasanya ada sebabnya. ·
+> **[`AGENTS.md`](AGENTS.md)** — ringkasan aturan keras untuk agent non-Claude.
+
+> Dokumentasi teknis lengkap ada di `internal/docs/`:
 > [`PLAN.md`](internal/docs/PLAN.md) (status & fitur) ·
 > [`blueprint.md`](internal/docs/blueprint.md) (arsitektur) ·
 > [`prd.md`](internal/docs/prd.md) / [`brd.md`](internal/docs/brd.md) / [`frd.md`](internal/docs/frd.md) (requirements) ·
@@ -131,8 +138,9 @@ Jika Early Bird dibuka lagi di masa depan, kembalikan logic di `PaymentDetail.js
 ### Widget Notifikasi Pembeli (BuyerFeedToast)
 `src/components/notifications/BuyerFeedToast.jsx`, dirender sitewide dari `App.jsx`. Menampilkan
 toast pojok kiri-bawah "**{Nama}** telah membeli tiket **{Kategori}**", bergantian tiap 5 detik,
-data dari `BUYER_FEED_CSV_URL` (konstanta di file itu — saat ini **masih kosong**, menunggu link
-CSV aman). **PENTING:** link CSV yang dipakai di sana **wajib** hanya berisi kolom Nama + Kategori
+data dari `BUYER_FEED_CSV_URL` (konstanta di file itu). **Status 20 Nov 2026: sudah terisi dan
+diverifikasi aman** — CSV-nya hanya 3 kolom (`Nama Lengkap`, `Pilih Kategori Lari`, `Timestamp`).
+**PENTING:** link CSV yang dipakai di sana **wajib** hanya berisi kolom Nama + Kategori
 dari sheet turunan `Public Feed` — jangan pernah pakai link sheet respons mentah (berisi NIK,
 alamat, no. HP). Lihat `internal/docs/security.md` untuk detail insiden & aturan wajibnya.
 
@@ -168,12 +176,18 @@ npm test          # Jalankan unit test
 
 ## Deploy
 
-**Otomatis:** Setiap push ke branch `main` akan trigger GitHub Actions (`.github/workflows/deploy.yml`) yang build lalu deploy ke GitHub Pages.
+> ⚠️ **Push ≠ live.** Domain `runfornation.my.id` dilayani **DomaiNesia**, bukan GitHub Pages.
+> GitHub Actions hanya mengisi branch `gh-pages` yang tidak dipakai domain. Perubahan baru benar-benar
+> tayang setelah langkah manual di bawah. Jangan melaporkan sesuatu "sudah live" hanya karena CI hijau.
 
-**Manual (untuk hosting lain):**
+**Otomatis (branch `gh-pages` saja):** setiap push ke `main` men-trigger GitHub Actions
+(`.github/workflows/deploy.yml`) yang build lalu deploy ke GitHub Pages — berguna untuk preview,
+dan untuk mendapat URL publik aset lewat `raw.githubusercontent.com`.
+
+**Manual — inilah yang membuat perubahan live:**
 1. Jalankan `npm run build`
 2. Zip folder `dist/` → jadikan `dist.zip`
-3. Upload `dist.zip` ke shared hosting / cPanel / VPS
+3. Upload & extract ke `public_html/` di DomaiNesia
 
 ---
 
@@ -201,6 +215,41 @@ Pixel sudah terpasang di `App.jsx`. Alur iklan:
 3. Data kembali ke Meta Ads untuk optimasi penayangan iklan
 
 Pixel ID saat ini: `1593896754910524` (bisa dicek/ubah di `App.jsx`, dalam script `fbq("init", ...)`).
+
+---
+
+## Lini Kedua: RFN Virtual Run Challenge 10K (di luar repo)
+
+Ada event kedua yang berjalan **sepenuhnya di Google Form** — tidak ada kodenya di repo ini.
+Permintaan soal "form", "link pendaftaran", atau "harga" bisa mengarah ke sana, jadi pastikan dulu
+lini mana yang dimaksud. Semua link, ID form, paket, dan jadwalnya ada di
+[`KNOWLEDGE.md`](KNOWLEDGE.md) §3–§4.
+
+Satu-satunya titik singgung dengan repo: file gambar di `public/` di-commit supaya punya URL publik
+(`raw.githubusercontent.com`) yang bisa disisipkan ke Google Form — upload gambar lokal langsung ke
+Google Form lewat browser otomatis tidak bisa.
+
+---
+
+## Laporan untuk Direktur (Bang Heri)
+
+Setiap batch pekerjaan yang butuh persetujuan dilaporkan sebagai **PDF A4 1–2 halaman** + skrip
+pesan WhatsApp singkat. Contoh terakhir: `~/Downloads/Laporan Update Link & Ongkir Virtual Run -
+20 Nov 2026.pdf`.
+
+Cara membuatnya (tidak ada library PDF Python di mesin ini):
+1. Tulis HTML biasa, lalu render dengan Chrome headless:
+   `"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --no-pdf-header-footer \
+   --virtual-time-budget=8000 --allow-file-access-from-files --print-to-pdf=out.pdf in.html`
+2. Bungkus tiap halaman dalam `.page { min-height:270mm; display:flex; flex-direction:column }`
+   dengan footer `margin-top:auto` — **jangan** `position:fixed`, footernya akan dobel di semua halaman.
+3. QR code: library `qrcodejs` dari cdnjs, dirender di halaman (butuh `--virtual-time-budget`).
+4. Crop screenshot: `sips -c <tinggi> <lebar> --cropOffset <atas> <kiri>`.
+5. Susunan halaman: banner event · eyebrow `LAPORAN PENGERJAAN · <tanggal>` · judul biru ·
+   `Untuk: Bang Heri · Disusun oleh: Rafi` · kartu link + QR · tabel permintaan→hasil dengan badge
+   **Selesai** · blok **Sebelum → Sesudah** · halaman 2: hal yang masih perlu keputusan.
+
+Simpan hasilnya di `~/Downloads/`, bukan di repo. Alasan format ini ada di [`MEMORY.md`](MEMORY.md).
 
 ---
 
