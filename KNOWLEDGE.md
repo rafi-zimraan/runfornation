@@ -8,7 +8,7 @@ sesuatu jadi begitu dicatat di [`MEMORY.md`](MEMORY.md).
 > karang.** Angka harga, nomor rekening, dan link form adalah hal yang langsung dilihat dan
 > ditransfer orang; salah satu digit berarti uang nyasar.
 
-Terakhir diverifikasi: **20 November 2026**.
+Terakhir diverifikasi: **24 November 2026**.
 
 ---
 
@@ -82,7 +82,7 @@ Semuanya hidup di Google Form; repo ini hanya menumpang untuk hosting gambar.
 
 | Keperluan | Link | Catatan |
 |---|---|---|
-| Daftar Virtual Run (pengganti TinyURL) | `runfornation.my.id/RFNVirtual` | Dibuat 20 Nov 2026 lewat `public/.htaccess`: satu pengalihan 302 langsung ke form. Huruf besar/kecil bebas. **Aktif hanya setelah `.htaccess` di-upload ke `public_html/`.** |
+| Daftar Virtual Run (pengganti TinyURL) | `runfornation.my.id/RFNVirtual` | Dibuat 20 Nov 2026 lewat `public/.htaccess`: satu pengalihan 302 langsung ke form. Huruf besar/kecil bebas. **Aktif hanya setelah `.htaccess` di-upload ke `public_html/`.** ⚠️ **Per 24 Nov 2026 masih 404 — file itu belum pernah naik ke server.** |
 | Daftar Virtual Run (lama) | `tinyurl.com/RFNVirtual` | Short link sejak 20 Nov 2026. Kena cek bot Cloudflare, jangan disebar lagi (lihat bawah). |
 | Daftar Virtual Run (asli) | `forms.gle/vA6EzR7DLqULgW4t8` | Tetap aktif. Masih tercetak di poster lama. |
 | Edit form daftar Virtual Run | `docs.google.com/forms/d/1djnVRmlhhDSODcFcvDBjv_Dv6DE5ORY9Fg9ieb9VYww/edit` | |
@@ -191,8 +191,25 @@ Kategori" yang didokumentasikan — tidak berbahaya, tapi tidak dipakai widget.
   **Diperbaiki 20 Nov 2026** dengan aturan SPA fallback di `public/.htaccess` (sudah diuji di
   Apache lokal). Live setelah file itu di-upload. Kalau `.htaccess` di server hilang, `/payment`
   kembali 404.
+  **⚠️ Diverifikasi ulang 24 Nov 2026: `.htaccess` ternyata belum pernah di-upload.**
+  `curl` ke live memberi `/` → 200, tapi `/payment` → 404 dan `/RFNVirtual` → 404,
+  keduanya halaman 404 bawaan Apache. Artinya short link yang dicetak & disebar **mati**, dan
+  peserta yang sudah transfer tidak bisa menyelesaikan pendataan diri. Perbaikan ada di repo
+  sejak 20 Nov tapi tidak berarti apa-apa sampai file itu naik ke `public_html/`.
 - **Google Form yang punya pertanyaan Upload File selalu mewajibkan login Google.** Ini
   tidak bisa dimatikan lewat setelan apa pun. Kalau form harus ringan dibuka dari WhatsApp, jangan
   pakai pertanyaan upload. Minta file dikirim lewat WA admin.
+  **Bukti lapangan 24 Nov 2026:** Rafi melaporkan "kebanyakan gagal upload bukti tf" di form
+  Virtual Run. Yang memperparah: pertanyaan upload itu di-set **Wajib diisi**, jadi satu kegagalan
+  upload membatalkan **seluruh** pendaftaran — nama, alamat, paket, dan size yang sudah diisi
+  ikut hilang. Yang hilang pendaftarnya, bukan cuma lampirannya.
+  Mitigasi yang tidak butuh persetujuan siapa pun: matikan **Wajib diisi**, dan matikan
+  **"Izinkan hanya jenis file tertentu"** (filter itu menolak HEIC dari iPhone dan tidak
+  melindungi apa pun).
 - **TinyURL tanpa akun bisa kena halaman cek bot Cloudflare** (lihat §4). Jangan dipakai untuk
   link yang disebar ke publik.
+- **`dist.zip` di repo tidak otomatis ikut `npm run build`.** Per 24 Nov 2026 isinya masih build
+  **5 November** — tanpa `.htaccess` dan tanpa size chart 10K. Upload zip basi itu ke
+  `public_html/` = menayangkan build lama dan 404-nya tetap ada, padahal terasa seperti sudah
+  diperbaiki. **Selalu `npm run build` lalu zip ulang sebelum upload**, dan verifikasi dengan
+  `unzip -l dist.zip | grep htaccess` — `.htaccess` berawalan titik, paling mudah hilang.

@@ -10,6 +10,49 @@ Entri terbaru di atas.
 
 ---
 
+### 2026-11-24 — Upload bukti transfer menggagalkan pendaftaran, dan `.htaccess` ternyata belum pernah naik
+
+**Temuan 1 — form Virtual Run.** Rafi melaporkan "kebanyakan gagal upload bukti tf". Screenshot
+form menunjukkan pertanyaan upload sudah disetel: hanya Gambar/PDF/Foto, maks 1 file, maks 1 GB,
+dan **Wajib diisi ON**. Penyetelan itu **tidak menyentuh penyebabnya**. Penyebabnya tetap yang
+sudah dicatat 20 Nov: pertanyaan Upload File memaksa login Google, dan login sering ditolak di
+in-app browser WhatsApp. Dua setelan itu malah menambah titik gagal — filter jenis file menolak
+HEIC dari iPhone, dan `Wajib diisi` membuat satu kegagalan upload membatalkan seluruh pendaftaran
+(nama, alamat, paket, size ikut hilang). Per 24 Nov baru **24 jawaban** masuk.
+
+**Keputusan.** Usulan menghapus pertanyaan upload dan memindah bukti transfer ke WA Meli
+(0853-9366-9366) **diajukan ulang ke Bang Heri** lewat skrip WA, kali ini dengan bukti kegagalan
+di lapangan — bukan lagi sekadar dugaan seperti 20 Nov. Belum dieksekusi, masih menunggu
+jawaban. Dua mitigasi yang tidak butuh persetujuan (matikan `Wajib diisi`, matikan filter jenis
+file) diserahkan ke Rafi untuk langsung dikerjakan.
+
+**Alasan menunggu, bukan langsung hapus.** Pertanyaan upload itu dulu permintaan Bang Heri
+sendiri ("seperti biasanya"). Menghapusnya memindahkan beban verifikasi ke panitia secara manual,
+jadi itu keputusan direktur, bukan keputusan teknis.
+
+**Temuan 2 — hosting.** `.htaccess` yang dibuat 20 Nov **tidak pernah di-upload** ke
+`public_html/`. Diverifikasi dengan `curl` ke domain live: `/` → 200, tapi `/RFNVirtual` → 404
+dan `/payment` → 404, keduanya halaman 404 bawaan Apache. Selama 4 hari short link yang disebar
+itu mati, dan peserta lini A yang sudah transfer tidak bisa menyelesaikan pendataan diri.
+
+**Penyebab tidak ketahuan selama 4 hari.** Pekerjaannya selesai di repo dan CI hijau, sehingga
+terasa seperti sudah beres. Ini persis jebakan "push ≠ live" yang sudah ditulis di `CLAUDE.md`
+dan `KNOWLEDGE.md` §7 — tertulis, tapi tetap menggigit karena tidak ada yang mengecek domain
+aslinya setelah commit.
+
+**Konsekuensi.**
+- `dist.zip` di-build ulang (24 Nov) — yang lama ternyata masih build **5 November**, tanpa
+  `.htaccess` dan tanpa size chart 10K. Upload zip itu justru akan menayangkan build lama dan
+  masalahnya tetap ada. Dicatat sebagai jebakan di `KNOWLEDGE.md` §9.
+- PR #1 dibuka untuk menggabungkan 3 commit 20 Nov yang masih tertinggal di branch
+  `docs/knowledge-memory-agents` + build ulang `dist.zip`.
+- **Tetap belum live setelah merge.** Upload manual ke `public_html/` masih jadi satu-satunya
+  cara, dan itu hanya bisa dilakukan Rafi lewat File Manager DomaiNesia.
+- Pelajaran yang dipakai mulai sekarang: setelah commit yang menyentuh `.htaccess` atau routing,
+  **cek domain live dengan `curl`**, jangan berhenti di CI hijau.
+
+---
+
 ### 2026-11-20 — Ganti TinyURL dengan `runfornation.my.id/RFNVirtual`
 
 **Keputusan.** Short link pendaftaran Virtual Run pindah dari `tinyurl.com/RFNVirtual` ke
